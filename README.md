@@ -42,7 +42,8 @@ Follow the steps below to get your development enviroment set up.
    project. A list of those dependencies can be found in `package.json`.
     
 #### Development
-1. Create a new branch. Make sure to use a descriptive name.
+1. Retreive the configuration file from an administrator.
+2. Create a new branch. Make sure to use a descriptive name.
 2. Make your changes.
 3. When you're ready to test your changes, create a *.spec.js file under the
    `__tests__` directory.
