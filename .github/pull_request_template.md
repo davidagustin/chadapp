@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Issue or Feature Name**  
-Issue <NUM>: [<FEATURE_NAME>](#<ISSUE_NUM>)
+Issue <NUM>: [<ISSUE_NAME>](#<ISSUE_NUM>)
 or 
 Feature: <FEAUTURE_NAME>
 
