@@ -50,7 +50,8 @@ Follow the steps below to get your development enviroment set up.
 
 #### Testing
 When you're ready to test your changes, run `npm test` in your project
-directory. This will run your tests, as well as all the tests in the `__tests__` directory.
+directory. This will run your tests, as well as all the tests in the `__tests__` directory.  
+
 **Note: Before creating a new branch and creating a pull request for your
 changes, your build must pass all the tests. If you need help, please create a
 test file and leave a comment in the test body, making note of any issues in
