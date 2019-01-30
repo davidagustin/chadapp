@@ -43,7 +43,6 @@ Follow the steps below to get your development enviroment set up.
     
 #### Development
 1. Retreive the configuration file from an administrator.
-2. Create a new branch. Make sure to use a descriptive name.
 2. Make your changes.
 3. When you're ready to test your changes, create a *.spec.js file under the
    `__tests__` directory.
@@ -57,10 +56,9 @@ test file and leave a comment in the test body, making note of any issues in
 their respective files. Make sure to label your pull request "help wanted."**
 
 #### Deployment
-Create a new branch, using the aforementioned syntax, and create a pull
-request. If your changes are approved, an administrator will merge your changes
-into master or you will be instructed on how to do so. At the end of
-the sprint, an administrator will deploy the changes from master into
+Create a a pull request. If your changes are approved, an administrator will
+merge your changes into master or you will be instructed on how to do so. At the
+end of the sprint, an administrator will deploy the changes from master into
 production.
 - Pull Request Syntax: When creating a pull request changes to be reviewed, be
   sure to follow the the pull request template located at `.github/pull_request_template.md`.
