@@ -43,8 +43,9 @@ Follow the steps below to get your development enviroment set up.
     
 #### Development
 1. Retreive the configuration file from an administrator.
-2. Make your changes.
-3. When you're ready to test your changes, create a *.spec.js file under the
+2. In your project directoy, run `npm start`, `npm run ios`, or `npm run android`.
+3. Make your changes.
+4. When you're ready to test your changes, create a *.spec.js file under the
    `__tests__` directory.
 
 #### Testing
