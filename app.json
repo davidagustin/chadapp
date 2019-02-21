@@ -8,12 +8,19 @@
       "ios",
       "android"
     ],
+    "ios": {
+      "bundleIdentifier": "com.chadtech.chad",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.chadtech.chad"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/atoms/assets/images/icon.png",
+    "icon": "./app/assets/images/icon.png",
     "splash": {
-      "image": "./app/atoms/assets/images/splash.png",
-      "resizeMode": "contain",
+      "image": "./app/assets/images/splash.png",
+      "resizeMode": "cover",
       "backgroundColor": "#8965E1"
     },
     "updates": {
@@ -21,9 +28,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": false
-    }
+    ]
   }
 }
