@@ -3,17 +3,19 @@
 
 // packages
 import { StyleSheet } from 'react-native'
+import {
+  widthPercentageToDP as wp, heightPercentageToDP as hp
+} from 'react-native-responsive-screen'
 
 // modules
-import { BASE, FONT_SMALL } from '../../atoms'
+import { BASE, FONT_SMALL, FONT_MEDIUM } from '../../../config/style'
 import { size, percentage } from '../../../utilities'
 
 const screen = StyleSheet.create({
   div: {
     display: 'flex',
     alignItems: 'center',
-    height: percentage(100),
-    width: percentage(100)
+    width: wp('100%')
   },
   wrapper: {
     alignItems: 'center',
@@ -27,6 +29,11 @@ const screen = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: size(20),
     width: percentage(100)
+  },
+  title: {
+    fontSize: FONT_SMALL,
+    fontWeight: '600',
+    marginBottom: wp('5.5%')
   },
   light_text: {
     color: BASE.light,

@@ -4,14 +4,14 @@
 // packages
 import React from 'react'
 import {
-  StatusBar, View, ImageBackground, Platform
+  StatusBar, ScrollView, ImageBackground, Platform
 } from 'react-native'
 
 // images
 import bkg from '../../../assets/images/bkg.png'
 
 // styles
-import { helpers } from '../../atoms'
+import { helpers } from '../../../config/style'
 
 const Layout = props => {
   const { gradient, hidden, children } = props
@@ -20,7 +20,7 @@ const Layout = props => {
   let image = { source: bkg, style: { height: '100%', width: '100%' } }
 
   return (
-    <View style={helpers.ada_container}>
+    <ScrollView contentContainerStyle={helpers.ada_container}>
       {
         Platform.OS === 'ios' &&
         <StatusBar {...status_bar} />
@@ -34,7 +34,7 @@ const Layout = props => {
           )
           : { children }
       }
-    </View >
+    </ScrollView >
   )
 }
 

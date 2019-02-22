@@ -11,7 +11,7 @@ const BASE = {
 
 const GREEN = {
   dark: '#85D185',
-  med: '#40DAA7',
+  med: '#31DE8A',
   light: '#08FD86'
 }
 

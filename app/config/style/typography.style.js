@@ -1,5 +1,5 @@
 // modules
-import { size } from '../../../utilities'
+import { size } from '../../utilities'
 
 /**
  * @file Typography constants.

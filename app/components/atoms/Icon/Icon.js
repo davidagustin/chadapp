@@ -1,16 +1,13 @@
 /* eslint-disable camelcase */
-/* eslint-disable space-before-function-paren */
 
 // packages
 import React from 'react'
 import { Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-// atoms
-import { PURPLE } from '../base/colors.style'
-import { ICON_SIZE } from '../base/typography.style'
-
 // styles
+import { PURPLE, ICON_SIZE } from '../../../config/style'
+
 import ada_icon from './Icon.style'
 
 /**
@@ -23,15 +20,22 @@ import ada_icon from './Icon.style'
 export default class Icon extends React.Component {
   static DEFAULT_STYLE = ada_icon
 
+  /**
+   * This function takes one argument, an Ionicon icon name, and prefixes the
+   * approriate device label unless the icon is a logo.
+   *
+   * @param {string} name - Ionicon icon name
+   * @returns {string} prefixed icon name unless icon is a logo
+   */
   static icon = name => name.includes('logo-') ? name : `${Platform.OS}-${name}`
 
   /**
    * Renders an icon.
    *
-   * @returns {Ionicons}
+   * @returns {Ionicons} Ionicon icon
    */
   render = () => {
-    const { DEFAULT_STYLE, icon } = Icon
+    const { icon } = Icon
     const { name, size, color } = this.props
 
     let style = {

@@ -2,7 +2,7 @@
 import { Dimensions } from 'react-native'
 
 // modules
-import { size, percentage } from '../../../utilities'
+import { size, percentage } from '../../utilities'
 
 /**
  * @file Style constants.

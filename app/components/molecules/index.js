@@ -4,3 +4,6 @@
  * [Reference]{@link http://atomicdesign.bradfrost.com/chapter-2/}
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
+
+export ProfileImage from './ProfileImage/ProfileImage'
+export Terms from './Terms/Terms'

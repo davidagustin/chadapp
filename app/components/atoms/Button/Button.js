@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable space-before-function-paren */
 
 // packages
 import React from 'react'
@@ -27,7 +26,7 @@ export default class Button extends React.Component {
     const { children, style, onPress } = this.props
 
     return (
-      <TouchableOpacity style={style || DEFAULT_STYLE} onPress={onPress} >
+      <TouchableOpacity style={style || DEFAULT_STYLE} onPress={onPress}>
         {children}
       </TouchableOpacity>
     )
