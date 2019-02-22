@@ -29,7 +29,11 @@ export default class OnboardScreen extends React.Component {
     return (
       <Layout gradient>
         <Wrapper keykeyboard style={[screen.wrapper]}>
-          
+          <View >
+            <Text >
+              Onboard Screen
+            </Text>
+          </View>
         </Wrapper>
       </Layout>
     )

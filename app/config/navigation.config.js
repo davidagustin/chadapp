@@ -5,19 +5,26 @@ import { createStackNavigator } from 'react-navigation'
 import { BASE } from '../components/atoms'
 
 // screens
-import { SplashScreen, RegisterScreen } from '../components/screens'
+import { SplashScreen, RegisterScreen, OnboardScreen } from '../components/screens'
 
 const NoAuthStack = createStackNavigator(
   {
-    Splash: {
-      screen: SplashScreen,
-      path: '/'
-    },
-    Register: {
-      screen: RegisterScreen,
-      path: '/register',
+    // Splash: {
+    //   screen: SplashScreen,
+    //   path: '/'
+    // },
+    // Register: {
+    //   screen: RegisterScreen,
+    //   path: '/register',
+    //   navigationOptions: {
+    //     title: 'Create Account'
+    //   }
+    // },
+    Onboard: {
+      screen: OnboardScreen,
+      path: '/onboard',
       navigationOptions: {
-        title: 'Create Account'
+        title: 'Welcome'
       }
     }
   },

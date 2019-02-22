@@ -42,7 +42,7 @@ const ads_splash = StyleSheet.create({
   btn: {
     backgroundColor: BASE.light,
     borderRadius: size(5),
-    height: size(80),
+    height: size(60),
     marginBottom: size(10),
     marginTop: size(10),
     width: size(310)
