@@ -30,21 +30,22 @@ export default class OnboardScreen extends React.Component {
     // all items that will have animations
 
     // Starting Positions for Items Receiving Translating Animations
-    this.get_started_button = new Animated.ValueXY({ x: 12, y: 0 })
+    this.get_started_button = new Animated.ValueXY({ x: 12, y: -20 })
     this.chad_logo = new Animated.ValueXY({ x: 0, y: -150 }) 
     this.chad_heading = new Animated.ValueXY({ x: 8, y: -180 })
     this.progress_bar_wrapper = new Animated.ValueXY({ x: 12, y: 200 })
     this.progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
     this.location_logo = new Animated.ValueXY({x: 300, y: -190})
-    //this.chatRoomLogo = new Animated.ValueXY({x: -600, y: 200})
-    //this.speakerLogo = new Animated.ValueXY({x: 8, y: -100})
-    //this.audioWaves = new Animated.ValueXY({x: 500, y: 200})
-    //this.background_circle1 = new Animated.ValueXY({x: 100, y: 100})
-    //this.background_cicle2 = new Animated.ValueXY({x: 100, y: 100})
-    //this.background_circle3 = new Animated.ValueXY({x: 100, y: 100})
+    this.next_screen_button = new Animated.ValueXY({x: 8, y: -100})
+    // this.chatRoomLogo = new Animated.ValueXY({x: -600, y: 200})
+    // this.speakerLogo = new Animated.ValueXY({x: 8, y: -100})
+    // this.audioWaves = new Animated.ValueXY({x: 500, y: 200})
+    // this.background_circle1 = new Animated.ValueXY({x: 100, y: 100})
+    // this.background_cicle2 = new Animated.ValueXY({x: 100, y: 100})
+    // this.background_circle3 = new Animated.ValueXY({x: 100, y: 100})
 
     // Starting Values for Items Receiving Fading/Resizing Animations
-    this.heading_resize = new Animated.Value(0)
+    this.heading_resize = new Animated.Value(72)
     this.center_circle_fade = this.state.fadeOutAnimation
     this.first_subheading_fade = this.state.fadeOutAnimation
     this.second_subheading_fade = this.state.fadeInAnimation
@@ -69,8 +70,10 @@ export default class OnboardScreen extends React.Component {
       this.firstForwardPressAnimations()
     } else if (this.state.click === 2) {
       this.secondForwardPressAnimations()
-    } else {
+    } else if (this.state.click === 3) {
       this.thirdForwardPressAnimations()
+    } else {
+      console.log('Navigate to home page')
     }
     this.setState({
       click: this.state.click += 1
@@ -110,10 +113,14 @@ export default class OnboardScreen extends React.Component {
     }).start()
 
     // Moving Chad Header and Resizing
-    Animated.timing(this.chad_heading, {
-      toValue: {x: 8, y: -480},
-      duration: 800
-    }).start()
+      Animated.timing(this.chad_heading, {
+        toValue: {x: 8, y: -450},
+        duration: 800
+      }).start()
+      Animated.timing(this.heading_resize, {
+        toValue: 20,
+        duration: 800,
+      }).start()
 
     //Fade Background Circle Away
     Animated.timing(this.center_circle_fade, {
@@ -138,7 +145,7 @@ export default class OnboardScreen extends React.Component {
 
     // Bringing In Progress Bar
     Animated.timing(this.progress_bar_wrapper, {
-      toValue: { x: 12, y: -70 },
+      toValue: { x: 12, y: -50 },
       duration: 800
     }).start()
   }
@@ -160,7 +167,7 @@ export default class OnboardScreen extends React.Component {
   }
 
   goBackToThirdScreen = () =>{
-    
+
   }
 
 
@@ -168,8 +175,8 @@ export default class OnboardScreen extends React.Component {
     let { fadeOutAnimation, fadeInAnimation } = this.state
 
     const textSize = this.heading_resize.interpolate({
-      inputRange: [90, 95],
-      outputRange: [18, 18]
+      inputRange: [18, 72],
+      outputRange: [72, 18]
     })
 
     return (
@@ -178,7 +185,7 @@ export default class OnboardScreen extends React.Component {
           <View style={screen.div}>
 
             {/* Icon and symbol animations */}
-            <Animated.View style={[ads_onboard.circle_logo_surrounding, { opacity: this.center_circle_fade}]}></Animated.View>
+            <Animated.View style={[ads_onboard.circle_logo_surrounding, { opacity: this.center_circle_fade }]}></Animated.View>
             <Animated.Image
             style={[ads_onboard.chadLogo, this.chad_logo.getLayout()]}
             source={require('../../../assets/images/logoOnboard.png')}
@@ -187,12 +194,11 @@ export default class OnboardScreen extends React.Component {
             style={[ads_onboard.location_logo, this.location_logo.getLayout()]}
             source={require('../../../assets/images/LocationSymbol.png')}
             />
-            <Animated.Text style={[ads_onboard.heading, this.chad_heading.getLayout()]}>CHAD</Animated.Text>
+            <Animated.Text style={[ads_onboard.heading, this.chad_heading.getLayout(), { fontSize: this.heading_resize }]}>CHAD</Animated.Text>
 
            {/* Text animations */}
             <Animated.View style={{opacity: this.first_subheading_fade}}>
               <Text style={ads_onboard.first_subheading}>Connect with others through{"\n"} location based chatrooms.</Text>
-              <Text style={ads_onboard.first_subheading}></Text>
             </Animated.View>
             <Animated.View style={{opacity: this.second_subheading_fade}}>
               <Text style={ads_onboard.thicker_subheading}>Location Focused</Text>
@@ -210,6 +216,7 @@ export default class OnboardScreen extends React.Component {
                 Ex: Chad take me to chatrooms located{"\n"} in San Francisco, CA.
               </Text>
             </Animated.View>    
+            
               
             {/* Buttons and progress bar animations*/}
             <Animated.View style={[ads_onboard.btn_wrapper, this.get_started_button.getLayout()]}>
@@ -223,12 +230,12 @@ export default class OnboardScreen extends React.Component {
               <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
             </Animated.View>
 
-            <Animated.View style={[ads_onboard.circle_arrow_button_surrounding, this.arrowButton]}>
-              <TouchableOpacity onPress={this.handleForwardPress}>
+            {/* <Animated.View style={this.next_screen_button.getLayout()}>
+              <TouchableOpacity style={ads_onboard.circle_arrow_button_surrounding} onPress={this.handleForwardPress}>
                 {this.state.click < 4 && <Icon></Icon>}
                 {this.state.click === 4 && <Icon></Icon>}
               </TouchableOpacity>
-            </Animated.View>
+            </Animated.View> */}
             
           </View>
         </Wrapper>

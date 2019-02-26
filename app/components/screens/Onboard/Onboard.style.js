@@ -54,7 +54,12 @@ const ads_onboard = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#41f4d0', 
+    backgroundColor: '#41f4d0',
+    justifyContent: 'center',
+    alignItems: 'center', 
+  },
+  arrow: {
+
   },
   heading: {
     color: BASE.light,
@@ -65,13 +70,6 @@ const ads_onboard = StyleSheet.create({
   text_container: {
     flex: 1,
     alignItems: 'center',
-  },
-  background_text_container: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   first_subheading: {
     color: BASE.light,
@@ -86,6 +84,9 @@ const ads_onboard = StyleSheet.create({
     fontSize: size(18),
     fontWeight: '300',
     textAlign: 'center',
+    position: 'absolute',
+    top: -135,
+    left: -55,
     marginTop: size(40),
     width: percentage(90),
   },
@@ -95,7 +96,7 @@ const ads_onboard = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     fontWeight: 'bold',
-    marginTop: size(-180)
+    marginTop: size(-160)
   },
   btn: {
     backgroundColor: '#41f4d0',
