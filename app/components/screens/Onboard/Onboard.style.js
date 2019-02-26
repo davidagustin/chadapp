@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native'
 
 // modules
 import { 
-  PURPLE, GREEN, BASE, FONT_XXXXL, FONT_LARGE, FONT_MEDIUM, FONT_SMALL
+  PURPLE, GREEN, BASE, FONT_XXXXL, FONT_LARGE, FONT_XL, FONT_XXL, FONT_XXXL
 } from '../../atoms'
 import { size, percentage } from '../../../utilities'
 
@@ -20,7 +20,7 @@ const ads_onboard = StyleSheet.create({
   },
   chadLogo: {
     width: 120,
-    height: 120
+    height: 120,
   },
   location_logo: {
     width: 120,
@@ -50,7 +50,7 @@ const ads_onboard = StyleSheet.create({
     shadowRadius: 2,  
     elevation: 5
   },
-  circle_button_surrounding: {
+  circle_arrow_button_surrounding: {
     width: 70,
     height: 70,
     borderRadius: 35,
@@ -58,17 +58,44 @@ const ads_onboard = StyleSheet.create({
   },
   heading: {
     color: BASE.light,
-    fontSize: size(80),
+    fontSize: size(72),
     fontWeight: '300',
     textAlign: 'center'
   },
-  subheading: {
+  text_container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  background_text_container: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  first_subheading: {
     color: BASE.light,
     fontSize: FONT_LARGE,
     fontWeight: '300',
     textAlign: 'center',
+    top: -130,
     width: percentage(90),
-    marginTop: size(),
+  },
+  following_subheading: {
+    color: BASE.light,
+    fontSize: size(18),
+    fontWeight: '300',
+    textAlign: 'center',
+    marginTop: size(40),
+    width: percentage(90),
+  },
+  thicker_subheading: {
+    color: BASE.light,
+    fontSize: size(32), 
+    fontWeight: '300',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: size(-180)
   },
   btn: {
     backgroundColor: '#41f4d0',
