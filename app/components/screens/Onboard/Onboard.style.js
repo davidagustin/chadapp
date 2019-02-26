@@ -19,16 +19,13 @@ const ads_onboard = StyleSheet.create({
      
   },
   chadLogo: {
-    marginTop: size(200),
     width: 100,
     height: 100
   },
   heading: {
     color: BASE.light,
-    fontSize: FONT_XXXXL,
+    fontSize: size(80),
     fontWeight: '300',
-    marginBottom: size(15),
-    marginTop: size(85),
     textAlign: 'center'
   },
   subheading: {
@@ -40,20 +37,19 @@ const ads_onboard = StyleSheet.create({
   },
   btn: {
     backgroundColor: '#41f4d0',
-    borderRadius: size(25),
-    height: size(60),
-    width: size(260)
+    borderRadius: size(20),
+    height: size(45),
+    width: size(260),
+    
   }, 
   btn_text: {
     color: BASE.light,
     fontSize: size(25),
     textAlign: 'center',
-    marginTop: size(13)
+    marginTop: size(8)
   },
   btn_wrapper: {
-    height: percentage(90),
     padding: size(20),
-    width: percentage(100),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,7 +58,7 @@ const ads_onboard = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,  
     elevation: 5
-  }
+  },
 })
 
 export default ads_onboard

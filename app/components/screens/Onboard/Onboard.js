@@ -26,58 +26,92 @@ export default class OnboardScreen extends React.Component {
     }
 
     // all items that will have animations
-    this.getStartedButtonAnimation = new Animated.ValueXY({ x: 12, y: -250 })
+
+    // Starting Positions for Translating Animations
+    this.getStartedButton = new Animated.ValueXY({ x: 12, y: 280 })
+    this.chadLogo = new Animated.ValueXY({x: 8, y: 135}) 
+    this.chadHeading = new Animated.ValueXY({x: 8, y: 150})
+
+
+    // Starting Values for Fading/Resizing Animations
+
   }
 
-  handlePress = click => {
+  // static navigationOptions = {
+  //   headerLeft: (
+  //     <Button
+  //       onPress={() => alert('This is a button!')}
+  //       title="Info"
+  //       color="#fff"
+  //     />
+  //   ),
+  // }
+  
+
+  handleForwardPress = () => {
     // do animation based on click number
-    console.log('click')
-    if (click === 1) {
-      this.firstPressAnimations()
-    } else if (click === 2) {
-      this.secondPressAnimations()
+    if (this.state.click === 1) {
+      this.firstForwardPressAnimations()
+    } else if (this.state.click === 2) {
+      this.secondForwardPressAnimations()
     } else {
-      this.thirdPressAnimations()
+      this.thirdForwardPressAnimations()
     }
-    // this.setState({
-    //   click: this.state.click += 1
-    // })
+    this.setState({
+      click: this.state.click += 1
+    })
   }
 
-  firstPressAnimations = () => {
-    // Button Animation
-    Animated.spring(this.getStartedButtonAnimation, {
-      toValue: {x: 50, y: -10},
+  firstForwardPressAnimations = () => {
+    // Moving Get Started Button Off Screen
+    Animated.timing(this.getStartedButton, {
+      toValue: {x: 12, y: 500},
+      duration: 800
     }).start() 
+
+    // Moving Chad Logo to New Position
+    Animated.timing(this.chadLogo, {
+      toValue: {x: -50, y: 200},
+      duration: 800
+    }).start()
+
+    // Moving Chad Header and Resizing
+    Animated.timing(this.chadHeading, {
+      toValue: {x: 8, y: 50},
+      duration: 800
+    }).start()
   }
 
-  secondPressAnimations = () => {
+  secondForwardPressAnimations = () => {
 
   }
 
-  thirdPressAnimations = () => {
+  thirdForwardPressAnimations = () => {
 
   }
+
+
 
   render () {
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
           <View style={screen.div}>
-          <Image
-          style={ads_onboard.chadLogo}
-          source={require('../../../assets/images/smallerLogo.png')}
-        />
-            <Text style={ads_onboard.heading}>CHAD</Text>
+          <Animated.Image
+          style={[ads_onboard.chadLogo, this.chadLogo.getLayout()]}
+          source={require('../../../assets/images/Speaker.png')}
+          />
+            <Animated.Text style={[ads_onboard.heading, this.chadHeading.getLayout()]}>CHAD</Animated.Text>
             <Text style={ads_onboard.subheading}>Connect with others through</Text>
             <Text style={ads_onboard.subheading}>location based chatrooms.</Text>
-            <Animated.View style={[ads_onboard.btn_wrapper, this.getStartedButtonAnimation.getLayout()]}>
-              <TouchableOpacity style={ads_onboard.btn} onPress={this.handlePress()}>
+            <Animated.View style={[ads_onboard.btn_wrapper, this.getStartedButton.getLayout()]}>
+              <TouchableOpacity style={ads_onboard.btn} onPress={this.handleForwardPress}>
                 <Text style={ads_onboard.btn_text}>
                   Get Started
                 </Text>
               </TouchableOpacity>
             </Animated.View>
+            
           </View>
         </Wrapper>
       </Layout>

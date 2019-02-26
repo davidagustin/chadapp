@@ -23,9 +23,6 @@ const NoAuthStack = createStackNavigator(
     Onboard: {
       screen: OnboardScreen,
       path: '/onboard',
-      navigationOptions: {
-        title: 'Welcome'
-      }
     }
   },
   {
