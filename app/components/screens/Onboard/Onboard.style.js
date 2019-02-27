@@ -34,16 +34,18 @@ const ads_onboard = StyleSheet.create({
   chatroom_logo: {
     width: 100,
     height: 100,
-    position: 'absolute'
+    position: 'absolute',
+    top: 200,
+    right: 60
   },
   speaker_logo: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     position: 'absolute'
   },
   audio_waves: {
-    width: 120,
-    height: 120,
+    width: 300,
+    height: 300,
     position:'absolute'
   },
   header: {
@@ -131,7 +133,7 @@ const ads_onboard = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     position: 'absolute',
-    left: -120,
+    left: -125,
     marginTop: size(-160)
   },
   btn: {
