@@ -2,7 +2,9 @@
 import { StyleSheet } from 'react-native'
 
 // modules
-import { percentage } from '../../../utilities'
+import { BASE } from './colors.style'
+import { FONT_SMALL } from './typography.style'
+import { percentage, size } from '../../utilities'
 
 /**
  * @file Manages a set of helper styles for the application.
@@ -20,6 +22,14 @@ const helpers = StyleSheet.create({
   },
   ada_div: {
     width: percentage(100)
+  },
+  light_text: {
+    color: BASE.light,
+    fontSize: FONT_SMALL
+  },
+  span: {
+    fontWeight: '600',
+    marginLeft: size(5)
   }
 })
 

@@ -11,6 +11,9 @@ import { Button, Icon } from '../../atoms'
 // templates
 import { Layout, Wrapper } from '../../templates'
 
+// molecules
+import { Terms } from '../../molecules'
+
 // modules
 import { size } from '../../../utilities'
 
@@ -60,9 +63,8 @@ export default class SplashScreen extends React.Component {
 
     return (
       <Layout gradient>
-        <Wrapper style={[screen.wrapper]}>
-          {/* logo text and tagline */}
-          <View style={screen.div}>
+        <View style={ads_splash.wrapper}>
+          <View style={ads_splash.div}>
             <Text style={ads_splash.heading}>Chad</Text>
             <Text style={ads_splash.subheading}>
               Message anyone in world, through location based chatrooms.
@@ -83,20 +85,10 @@ export default class SplashScreen extends React.Component {
                 </Text>
               </Button>
             </View>
-
-            <View style={screen.terms}>
-              <Text style={screen.light_text}>
-                By creating an account, I accept
-              </Text>
-
-              <Button>
-                <Text style={[screen.light_text, screen.span]}>
-                  Chad's Terms of Service
-                </Text>
-              </Button>
-            </View>
           </View>
-        </Wrapper>
+
+          <Terms />
+        </View>
       </Layout>
     )
   }

@@ -10,7 +10,7 @@ import { AppLoading, Asset, Font, Icon } from 'expo'
 import AppNavigator from './app/components/Navigator'
 
 // styles
-import { BASE, helpers } from './app/components/atoms'
+import { BASE, helpers } from './app/config/style'
 
 export default class App extends React.Component {
   state = {
