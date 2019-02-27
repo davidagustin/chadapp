@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native'
 // modules
 import { 
   PURPLE, GREEN, BASE, FONT_XXXXL, FONT_LARGE, FONT_XL, FONT_XXL, FONT_XXXL
-} from '../../atoms'
+} from '../../../config/style'
 import { size, percentage } from '../../../utilities'
 
 
@@ -16,8 +16,7 @@ const ads_onboard = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     height: percentage(100),
-    width: percentage(100),
-     
+    width: percentage(100), 
   },
   chadLogo: {
     width: 120,
