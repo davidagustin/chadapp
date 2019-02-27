@@ -10,6 +10,7 @@ import {
 } from '../../atoms'
 import { size, percentage } from '../../../utilities'
 
+
 const ads_onboard = StyleSheet.create({
   div: {
     display: 'flex',
@@ -22,21 +23,45 @@ const ads_onboard = StyleSheet.create({
     width: 120,
     height: 120,
   },
+  plus_symbol: {
+    position: 'absolute',
+    top: 220
+  },
   location_logo: {
     width: 120,
-    height: 120
+    height: 120,
   },
   chatroom_logo: {
     width: 100,
-    height: 100
+    height: 100,
+    position: 'absolute'
   },
   speaker_logo: {
     width: 100,
-    height: 100
+    height: 100,
+    position: 'absolute'
   },
   audio_waves: {
     width: 120,
-    height: 120
+    height: 120,
+    position:'absolute'
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  back_button: {
+    position: 'absolute',
+    top: 60,
+    right: 130
+  },
+  skip_button: {
+    position: 'absolute',
+    top: 57,
+    right: -155,
+    color: BASE.light,
+    fontSize: size(18),
+    fontWeight: '300'
   },
   circle_logo_surrounding: {
     width: 200,
@@ -50,7 +75,7 @@ const ads_onboard = StyleSheet.create({
     shadowRadius: 2,  
     elevation: 5
   },
-  circle_arrow_button_surrounding: {
+  forward_button_surrounding: {
     width: 70,
     height: 70,
     borderRadius: 35,
@@ -58,8 +83,9 @@ const ads_onboard = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center', 
   },
-  arrow: {
-
+  forward_button: {
+    width: 40,
+    height: 40
   },
   heading: {
     color: BASE.light,
@@ -86,7 +112,7 @@ const ads_onboard = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     top: -135,
-    left: -55,
+    left: -170,
     marginTop: size(40),
     width: percentage(90),
   },
@@ -96,6 +122,8 @@ const ads_onboard = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     fontWeight: 'bold',
+    position: 'absolute',
+    left: -120,
     marginTop: size(-160)
   },
   btn: {
@@ -125,8 +153,8 @@ const ads_onboard = StyleSheet.create({
   progress_bar_wrapper: {
     backgroundColor: '#41f4d0',
     borderRadius: size(20),
-    height: size(25),
-    width: size(279),
+    height: size(28),
+    width: size(270),
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
@@ -136,8 +164,8 @@ const ads_onboard = StyleSheet.create({
   progress_bar_inner: {
     backgroundColor: '#FFFFFF',
     borderRadius: size(20),
-    height: size(25),
-    width: size(93),
+    height: size(28),
+    width: size(90),
     marginTop: size(-25),
     marginRight: size(185)
   }

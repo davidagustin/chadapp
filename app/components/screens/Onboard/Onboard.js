@@ -4,12 +4,13 @@
 // packages
 import React from 'react'
 import { 
-  Text, View, Animated, TouchableOpacity, Image, Icon
+  Text, View, Animated, TouchableOpacity, Image
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 // atoms
 // maybe change some animations into atoms?
-import { } from '../../atoms'
+import { Button } from '../../atoms'
 
 // templates
 import { Layout, Wrapper } from '../../templates'
@@ -36,12 +37,12 @@ export default class OnboardScreen extends React.Component {
     this.progress_bar_wrapper = new Animated.ValueXY({ x: 12, y: 200 })
     this.progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
     this.location_logo = new Animated.ValueXY({x: 300, y: -190})
-    this.next_screen_button = new Animated.ValueXY({x: 8, y: -100})
+    this.next_screen_button = new Animated.ValueXY({x: 250, y: -25})
     // this.chatRoomLogo = new Animated.ValueXY({x: -600, y: 200})
     // this.speakerLogo = new Animated.ValueXY({x: 8, y: -100})
     // this.audioWaves = new Animated.ValueXY({x: 500, y: 200})
-    // this.background_circle1 = new Animated.ValueXY({x: 100, y: 100})
-    // this.background_cicle2 = new Animated.ValueXY({x: 100, y: 100})
+    this.background_circle1 = new Animated.ValueXY({x: 100, y: 100})
+    this.background_cicle2 = new Animated.ValueXY({x: 100, y: 100})
     // this.background_circle3 = new Animated.ValueXY({x: 100, y: 100})
 
     // Starting Values for Items Receiving Fading/Resizing Animations
@@ -51,6 +52,8 @@ export default class OnboardScreen extends React.Component {
     this.second_subheading_fade = this.state.fadeInAnimation
     this.third_subheading_fade = this.state.fadeInAnimation
     this.fourth_subheading_fade = this.state.fadeInAnimation
+    this.header_fade = this.state.fadeInAnimation
+    this.plus_fade = this.state.fadeInAnimation
   }
 
   // static navigationOptions = {
@@ -102,13 +105,13 @@ export default class OnboardScreen extends React.Component {
 
     // Moving Chad Logo to New Position
     Animated.timing(this.chad_logo, {
-      toValue: {x: -80, y: -70},
+      toValue: {x: -70, y: -90},
       duration: 800
     }).start()
 
     // Moving Location Logo Onto Screen
     Animated.timing(this.location_logo, {
-      toValue: {x: 100, y: -190},
+      toValue: {x: 70, y: -210},
       duration: 800
     }).start()
 
@@ -145,9 +148,23 @@ export default class OnboardScreen extends React.Component {
 
     // Bringing In Progress Bar
     Animated.timing(this.progress_bar_wrapper, {
-      toValue: { x: 12, y: -50 },
-      duration: 800
+      toValue: { x: 12, y: -60 },
+      duration: 600
     }).start()
+
+    // Bring In Forward Arrow Button
+    Animated.timing(this.next_screen_button, {
+      toValue: { x: 120, y: 10 },
+      duraton: 800
+    }).start()
+
+    // Fade In Header Buttons
+
+    // Bring In Background Circles
+
+    // Fade In + Symbol
+
+
   }
 
   secondForwardPressAnimations = () => {
@@ -159,11 +176,11 @@ export default class OnboardScreen extends React.Component {
   }
 
   goBackToFirstScreen = () => {
-
+    console.log('back')
   }
 
   goBackToSecondScreen = () => {
-
+    
   }
 
   goBackToThirdScreen = () =>{
@@ -174,15 +191,23 @@ export default class OnboardScreen extends React.Component {
   render () {
     let { fadeOutAnimation, fadeInAnimation } = this.state
 
-    const textSize = this.heading_resize.interpolate({
-      inputRange: [18, 72],
-      outputRange: [72, 18]
-    })
-
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
           <View style={screen.div}>
+
+          {/* Header to house back and skip buttons */}
+          <Animated.View style={ads_onboard.header}>
+            <Button>
+              <Image
+              style={ads_onboard.back_button} 
+              source={require('../../../assets/images/Back.png')}
+              onPress={this.handleBackPress}/>
+            </Button>
+            <Button>
+              <Text style={ads_onboard.skip_button}>Skip</Text>
+            </Button>
+          </Animated.View>
 
             {/* Icon and symbol animations */}
             <Animated.View style={[ads_onboard.circle_logo_surrounding, { opacity: this.center_circle_fade }]}></Animated.View>
@@ -195,6 +220,10 @@ export default class OnboardScreen extends React.Component {
             source={require('../../../assets/images/LocationSymbol.png')}
             />
             <Animated.Text style={[ads_onboard.heading, this.chad_heading.getLayout(), { fontSize: this.heading_resize }]}>CHAD</Animated.Text>
+            <Animated.Image 
+            style={[ads_onboard.plus_symbol, { opacity: this.plus_fade }]}
+            source={require('../../../assets/images/plus.png')}
+            />
 
            {/* Text animations */}
             <Animated.View style={{opacity: this.first_subheading_fade}}>
@@ -220,22 +249,28 @@ export default class OnboardScreen extends React.Component {
               
             {/* Buttons and progress bar animations*/}
             <Animated.View style={[ads_onboard.btn_wrapper, this.get_started_button.getLayout()]}>
-              <TouchableOpacity style={ads_onboard.btn} onPress={this.handleForwardPress}>
+              <Button style={ads_onboard.btn} onPress={this.handleForwardPress}>
                 <Text style={ads_onboard.btn_text}>
                   Get Started
                 </Text>
-              </TouchableOpacity>
+              </Button>
             </Animated.View>
             <Animated.View style={[ads_onboard.progress_bar_wrapper, this.progress_bar_wrapper.getLayout()]}>
               <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
             </Animated.View>
 
-            {/* <Animated.View style={this.next_screen_button.getLayout()}>
-              <TouchableOpacity style={ads_onboard.circle_arrow_button_surrounding} onPress={this.handleForwardPress}>
-                {this.state.click < 4 && <Icon></Icon>}
-                {this.state.click === 4 && <Icon></Icon>}
-              </TouchableOpacity>
-            </Animated.View> */}
+            <Animated.View style={this.next_screen_button.getLayout()}>
+              <Button style={ads_onboard.forward_button_surrounding} onPress={this.handleForwardPress}>
+                {this.state.click < 4 ? 
+                <Image 
+                style={ads_onboard.forward_button_content} 
+                source={require('../../../assets/images/forward.png')}/>
+                : <Image 
+                style={ads_onboard.forward_button_content}
+                source={require('../../../assets/images/Check.png')}
+                />}
+              </Button>
+            </Animated.View>
             
           </View>
         </Wrapper>
