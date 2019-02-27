@@ -59,6 +59,8 @@ const ads_onboard = StyleSheet.create({
     position: 'absolute',
     top: 57,
     right: -155,
+  },
+  skip_button_text: {
     color: BASE.light,
     fontSize: size(18),
     fontWeight: '300'
@@ -82,6 +84,12 @@ const ads_onboard = StyleSheet.create({
     backgroundColor: '#41f4d0',
     justifyContent: 'center',
     alignItems: 'center', 
+    position: 'absolute',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,  
+    elevation: 5
   },
   forward_button: {
     width: 40,
@@ -159,7 +167,8 @@ const ads_onboard = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,  
-    elevation: 5
+    elevation: 5,
+    position: 'absolute'
   },
   progress_bar_inner: {
     backgroundColor: '#FFFFFF',
@@ -168,7 +177,11 @@ const ads_onboard = StyleSheet.create({
     width: size(90),
     marginTop: size(-25),
     marginRight: size(185)
-  }
+  },
+  background_circle: {
+    position: 'absolute',
+    top: 0
+  },
 })
 
 export default ads_onboard
