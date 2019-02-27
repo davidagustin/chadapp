@@ -4,7 +4,7 @@
 // packages
 import React from 'react'
 import { 
-  Text, View, Animated, TouchableOpacity, Image
+  Text, View, Animated, Image
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -31,12 +31,12 @@ export default class OnboardScreen extends React.Component {
     // all items that will have animations
 
     // Starting Positions for Items Receiving Translating Animations
-    this.get_started_button = new Animated.ValueXY({ x: 6, y: -20 })
-    this.chad_logo = new Animated.ValueXY({ x: 0, y: -150 }) 
-    this.chad_heading = new Animated.ValueXY({ x: 0, y: -180 })
+    this.get_started_button = new Animated.ValueXY({ x: 6, y: -80 })
+    this.chad_logo = new Animated.ValueXY({ x: 0, y: 150 }) 
+    this.chad_heading = new Animated.ValueXY({ x: 0, y: 120 })
     this.progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 620 })
     this.progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
-    this.location_logo = new Animated.ValueXY({ x: 70, y: -200 })
+    this.location_logo = new Animated.ValueXY({ x: 80, y: 80 })
     this.next_screen_button = new Animated.ValueXY({x: 280, y: -30})
     this.speaker_logo = new Animated.ValueXY({x: 130, y: -150})
     this.audio_waves = new Animated.ValueXY({x: -285, y: 115})
@@ -59,45 +59,49 @@ export default class OnboardScreen extends React.Component {
 
   handleForwardPress = () => {
     // do animation based on click number
-    if (this.state.click === 1) {
-      this.goToSecondScreen('forward')
-    } else if (this.state.click === 2) {
-      this.goToThirdScreen('forward')
-    } else if (this.state.click === 3) {
-      this.goToFourthScreen()
-    } else {
-      console.log('Navigate to home page')
+    if (this.state.click < 4) {
+      if (this.state.click === 1) {
+        this.goToSecondScreen('forward')
+      } else if (this.state.click === 2) {
+        this.goToThirdScreen('forward')
+      } else if (this.state.click === 3) {
+        this.goToFourthScreen()
+      } else {
+        console.log('Navigate to home page')
+      }
+      this.setState({
+        click: this.state.click += 1
+      })
     }
-    this.setState({
-      click: this.state.click += 1
-    })
   }
 
   handleBackPress = () => {
     console.log('yo')
-    if (this.state.click === 2) {
-      this.goBackToFirstScreen()
-    } else if (this.state.click === 3) {
-      this.goToSecondScreen('back')
-    } else {
-      this.goToThirdScreen('back')
+    if (this.state.click > 1 ) {
+      if (this.state.click === 2) {
+        this.goBackToFirstScreen()
+      } else if (this.state.click === 3) {
+        this.goToSecondScreen('back')
+      } else {
+        this.goToThirdScreen('back')
+      }
+      this.setState({
+        click: this.state.click -= 1
+      })
     }
-    this.setState({
-      click: this.state.click -= 1
-    })
   }
 
   // Can Reach This Page On Both and Backward Press
   goToSecondScreen = (direction) => {
     // Moving Get Started Button Off Screen
     Animated.timing(this.get_started_button, {
-      toValue: {x: 12, y: 300},
+      toValue: {x: 12, y: 200},
       duration: 800
     }).start() 
 
     // Moving Chad Logo to New Position
     Animated.timing(this.chad_logo, {
-      toValue: {x: -70, y: -80},
+      toValue: {x: -80, y: 200},
       duration: 800
     }).start()
 
@@ -109,7 +113,7 @@ export default class OnboardScreen extends React.Component {
 
     // Moving Chad Header and Resizing
     Animated.timing(this.chad_heading, {
-      toValue: {x: 0, y: -450},
+      toValue: {x: 0, y: -184},
       duration: 800
     }).start()
     Animated.timing(this.heading_resize, {
@@ -174,7 +178,7 @@ export default class OnboardScreen extends React.Component {
     if (direction === 'back') {
       // Move Location Logo Back On Screen
       Animated.timing(this.location_logo, {
-        toValue: { x: 70, y: -200 },
+        toValue: { x: 80, y: 80 },
         duration: 800
       }).start()
 
@@ -252,6 +256,12 @@ export default class OnboardScreen extends React.Component {
         toValue: {x: 130, y: -150},
         duration: 800
       }).start()
+
+      // Remove Audio Waves
+      Animated.timing(this.audio_waves, {
+        toValue: {x: -285, y: 115},
+        duration: 800
+      }).start()
     }
   }
 
@@ -321,7 +331,7 @@ export default class OnboardScreen extends React.Component {
 
     // Moving Chad Logo to New Position
     Animated.timing(this.chad_logo, {
-      toValue: {x: 0, y: -150},
+      toValue: { x: 0, y: 150 },
       duration: 800
     }).start()
 
@@ -333,7 +343,7 @@ export default class OnboardScreen extends React.Component {
 
     // Moving Chad Header and Resizing
     Animated.timing(this.chad_heading, {
-      toValue: {x: 0, y: -180},
+      toValue: { x: 0, y: 120 },
       duration: 800
     }).start()
     Animated.timing(this.heading_resize, {
@@ -403,21 +413,27 @@ export default class OnboardScreen extends React.Component {
         <Wrapper style={[screen.wrapper]}>
           <View style={screen.div}>
 
-          {/* Header to house back and skip buttons */}
-          <Animated.View style={[ads_onboard.header, {opacity: this.header_fade}]}>
-            <Animated.Image
-            style={[ads_onboard.background_circle, this.background_circle_top_left.getLayout()]}
-            source={require('../../../assets/images/circleTopLeft.png')}
-            />
-            <Button style={ads_onboard.back_button} onPress={this.handleBackPress}>
-              <Image 
-              source={require('../../../assets/images/Back.png')}
+            {/* Header to house back and skip buttons */}
+            <Animated.View style={[ads_onboard.header, {opacity: this.header_fade}]}>
+              <Animated.Image
+              style={[ads_onboard.background_circle, this.background_circle_top_left.getLayout()]}
+              source={require('../../../assets/images/circleTopLeft.png')}
               />
-            </Button>
-            <Button style={ads_onboard.skip_button} onPress={()=> {console.log('Skip')}}>
-              <Text style={ads_onboard.skip_button_text}>Skip</Text>
-            </Button>
-          </Animated.View>
+              <View>
+                <Button style={ads_onboard.back_button} onPress={this.handleBackPress}>
+                    <Image 
+                    source={require('../../../assets/images/Back.png')}
+                    />
+                </Button>
+              </View>
+              <View>
+                <Button style={ads_onboard.skip_button} onPress={() => {console.log('Skip')}}>
+                  <Text style={ads_onboard.skip_button_text}>
+                    Skip
+                  </Text>
+                </Button>
+              </View>
+            </Animated.View>
 
             {/* Icon and symbol animations */}
             <Animated.Image 
@@ -428,7 +444,10 @@ export default class OnboardScreen extends React.Component {
             style={[ads_onboard.background_circle, this.background_cicle_middle_right.getLayout()]}
             source={require('../../../assets/images/circleMiddleRight.png')}
             />
-            <Animated.View style={[ads_onboard.circle_logo_surrounding, { opacity: this.center_circle_fade }]}></Animated.View>
+            <Animated.Image 
+            style={[ads_onboard.circle_logo_surrounding, { opacity: this.center_circle_fade }]}
+            source={require('../../../assets/images/Oval.png')}
+            />
             <Animated.Image
             style={[ads_onboard.chadLogo, this.chad_logo.getLayout()]}
             source={require('../../../assets/images/logoOnboard.png')}
@@ -455,29 +474,41 @@ export default class OnboardScreen extends React.Component {
             source={require('../../../assets/images/AudioWaves.png')}
             />
 
-           {/* Text animations */}
+            {/* Text animations */}
             <Animated.View style={{opacity: this.first_subheading_fade}}>
-              <Text style={ads_onboard.first_subheading}>Connect with others through{"\n"} location based chatrooms.</Text>
+              <Text style={ads_onboard.first_subheading}>
+                Connect with others through{"\n"} location based chatrooms.
+              </Text>
             </Animated.View>
-            <Animated.View style={{opacity: this.second_subheading_fade}}>
-              <Text style={ads_onboard.thicker_subheading}>Location Focused</Text>
-              <Text style={ads_onboard.following_subheading}>Join chatrooms all over the map</Text>
-            </Animated.View>    
-            <Animated.View style={{opacity: this.third_subheading_fade}}>
-              <Text style={ads_onboard.thicker_subheading}>Chatroom Tags</Text>
-              <Text style={ads_onboard.following_subheading}>
-                Join chatrooms related to a specific topic{"\n"} of interest
-              </Text>
-            </Animated.View>  
-            <Animated.View style={{opacity: this.fourth_subheading_fade}}>
-              <Text style={ads_onboard.thicker_subheading}>Say Something</Text>
-              <Text style={ads_onboard.following_subheading}>
-                Ex: Chad take me to chatrooms located{"\n"} in San Francisco, CA.
-              </Text>
-            </Animated.View>    
-            
+            <View style={ads_onboard.text_container}>
+              <Animated.View style={{opacity: this.second_subheading_fade}}>
+                <Text style={[ads_onboard.thicker_subheading, {left: -125}]}>Location Focused</Text>
+                <Text style={ads_onboard.following_subheading}>
+                  Join chatrooms located all over the map
+                </Text>
+              </Animated.View>    
+              <Animated.View style={{opacity: this.third_subheading_fade}}>
+                <Text style={ads_onboard.thicker_subheading}>Chatroom Tags</Text>
+                <Text style={ads_onboard.following_subheading}>
+                  Join chatrooms related to a specific topic{"\n"} of interest
+                </Text>
+              </Animated.View>  
+              <Animated.View style={{opacity: this.fourth_subheading_fade}}>
+                <Text style={ads_onboard.thicker_subheading}>Say Something</Text>
+                <Text style={ads_onboard.following_subheading}>
+                  Ex: Chad take me to chatrooms located{"\n"} in San Francisco, CA.
+                </Text>
+              </Animated.View>    
+            </View>
               
+                
             {/* Buttons and progress bar animations*/}
+            
+
+            <Animated.View style={[ads_onboard.progress_bar_wrapper, this.progress_bar_wrapper.getLayout()]}>
+              <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
+            </Animated.View>
+
             <Animated.View style={[ads_onboard.btn_wrapper, this.get_started_button.getLayout()]}>
               <Button style={ads_onboard.btn} onPress={this.handleForwardPress}>
                 <Text style={ads_onboard.btn_text}>
@@ -486,9 +517,6 @@ export default class OnboardScreen extends React.Component {
               </Button>
             </Animated.View>
 
-            <Animated.View style={[ads_onboard.progress_bar_wrapper, this.progress_bar_wrapper.getLayout()]}>
-              <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
-            </Animated.View>
 
             <Animated.View style={this.next_screen_button.getLayout()}>
               <Button style={ads_onboard.forward_button_surrounding} onPress={this.handleForwardPress}>
@@ -502,6 +530,7 @@ export default class OnboardScreen extends React.Component {
                 />}
               </Button>
             </Animated.View>
+          
             
           </View>
         </Wrapper>

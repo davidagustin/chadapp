@@ -68,25 +68,18 @@ const ads_onboard = StyleSheet.create({
     fontWeight: '300'
   },
   circle_logo_surrounding: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    backgroundColor: '#7D59DC', 
-    marginTop: size(68),
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,  
-    elevation: 5
+    position: 'absolute',
+    top: 20,
   },
   forward_button_surrounding: {
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#41f4d0',
+    backgroundColor: '#38d59d',
     justifyContent: 'center',
     alignItems: 'center', 
     position: 'absolute',
+    top: -100,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
@@ -112,7 +105,7 @@ const ads_onboard = StyleSheet.create({
     fontSize: FONT_LARGE,
     fontWeight: '300',
     textAlign: 'center',
-    top: -130,
+    top: 150,
     width: percentage(90),
   },
   following_subheading: {
@@ -121,7 +114,7 @@ const ads_onboard = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     position: 'absolute',
-    top: -135,
+    top: 135,
     left: -170,
     marginTop: size(40),
     width: percentage(90),
@@ -133,14 +126,15 @@ const ads_onboard = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     position: 'absolute',
-    left: -125,
+    left: -110,
+    top: 270,
     marginTop: size(-160)
   },
   btn: {
-    backgroundColor: '#41f4d0',
+    backgroundColor: '#38d59d',
     borderRadius: size(20),
-    height: size(45),
-    width: size(260),
+    height: size(50),
+    width: size(245),
     
   }, 
   btn_text: {
@@ -157,11 +151,11 @@ const ads_onboard = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
-    shadowRadius: 2,  
-    elevation: 5
+    shadowRadius: 4,  
+    elevation: 8
   },
   progress_bar_wrapper: {
-    backgroundColor: '#41f4d0',
+    backgroundColor: '#38d59d',
     borderRadius: size(20),
     height: size(28),
     width: size(270),
