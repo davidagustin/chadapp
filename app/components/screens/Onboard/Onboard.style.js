@@ -78,7 +78,7 @@ const ads_onboard = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center', 
     position: 'absolute',
-    top: -100,
+    top: 260,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,

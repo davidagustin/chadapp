@@ -6,7 +6,7 @@ import React from 'react'
 import { 
   Text, View, Animated, Image
 } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 // atoms
 // maybe change some animations into atoms?
@@ -19,6 +19,8 @@ import { Layout, Wrapper } from '../../templates'
 import screen from '../base/Screen.style'
 import ads_onboard from './Onboard.style'
 
+// assets (not sure if this was best location for file, feel free to move it)
+const { translate, changeAppearance } = require('../../../assets/animations')
 export default class OnboardScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -29,9 +31,10 @@ export default class OnboardScreen extends React.Component {
     }
 
     // all items that will have animations
+    // Brainstorming a way to store these animation values in an array or object 
 
     // Starting Positions for Items Receiving Translating Animations
-    this.get_started_button = new Animated.ValueXY({ x: 6, y: -80 })
+    this.get_started_button = new Animated.ValueXY({ x: 6, y: 260 })
     this.chad_logo = new Animated.ValueXY({ x: 0, y: 150 }) 
     this.chad_heading = new Animated.ValueXY({ x: 0, y: 120 })
     this.progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 620 })
@@ -76,7 +79,7 @@ export default class OnboardScreen extends React.Component {
   }
 
   handleBackPress = () => {
-    console.log('yo')
+    console.log('Back Button Pressed')
     if (this.state.click > 1 ) {
       if (this.state.click === 2) {
         this.goBackToFirstScreen()
@@ -94,320 +97,160 @@ export default class OnboardScreen extends React.Component {
   // Can Reach This Page On Both and Backward Press
   goToSecondScreen = (direction) => {
     // Moving Get Started Button Off Screen
-    Animated.timing(this.get_started_button, {
-      toValue: {x: 12, y: 200},
-      duration: 800
-    }).start() 
+    translate(this.get_started_button, 12, 500, 800)
 
     // Moving Chad Logo to New Position
-    Animated.timing(this.chad_logo, {
-      toValue: {x: -80, y: 200},
-      duration: 800
-    }).start()
+    translate(this.chad_logo, -80, 200, 800)
 
     // Fading Location Logo In
-    Animated.timing(this.location_logo_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
+    changeAppearance(this.location_logo_fade, 1, 800)
 
     // Moving Chad Header and Resizing
-    Animated.timing(this.chad_heading, {
-      toValue: {x: 0, y: -184},
-      duration: 800
-    }).start()
-    Animated.timing(this.heading_resize, {
-      toValue: 20,
-      duration: 800,
-    }).start()
+    translate(this.chad_heading, 0, -184, 800)
+    changeAppearance(this.heading_resize, 20, 800)
 
     //Fade Background Circle Away
-    Animated.timing(this.center_circle_fade, {
-      toValue: 0,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.center_circle_fade, 0, 1000)
 
     //Fade Out First Subheading
-    Animated.timing(this.first_subheading_fade, {
-      toValue: 0,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.first_subheading_fade, 0, 1000)
 
     //Fade In Second Subheading
-    Animated.timing(this.second_subheading_fade, {
-      toValue: 1,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.second_subheading_fade, 1, 1000)
 
     // Bringing In Progress Bar
-    Animated.timing(this.progress_bar_wrapper, {
-      toValue: { x: 58, y: 620 },
-      duration: 600
-    }).start()
+    translate(this.progress_bar_wrapper, 58, 620, 800)
 
     // Bring In Forward Arrow Button
-    Animated.timing(this.next_screen_button, {
-      toValue: {x: 80, y: 20},
-      duraton: 800
-    }).start()
+    translate(this.next_screen_button, 80, 20, 800)
 
     // Fade In Header Buttons
-    Animated.timing(this.header_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
+    changeAppearance(this.header_fade, 1, 1000)
 
     // Bring In Background Circles
-    Animated.timing(this.background_circle_top_left, {
-      toValue: {x: -240, y: -110},
-      duration: 800
-    }).start()
-
-    Animated.timing(this.background_cicle_middle_right, {
-      toValue: {x: 150, y: 120},
-      duration: 800
-    }).start()
+    translate(this.background_circle_top_left, -240, -110, 800)
+    translate(this.background_cicle_middle_right, 150, 120, 800)
 
     // Fade In + Symbol
-    Animated.timing(this.plus_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
+    changeAppearance(this.plus_fade, 1, 800)
 
     // Animations Needed To Move Back To Screen
     if (direction === 'back') {
       // Move Location Logo Back On Screen
-      Animated.timing(this.location_logo, {
-        toValue: { x: 80, y: 80 },
-        duration: 800
-      }).start()
+      translate(this.location_logo, 80, 80, 800)
 
       // Move progress bar back
-      Animated.timing(this.progress_bar_inner, {
-        toValue: { x: 0, y: 25 },
-        duration: 800
-      }).start()
+      translate(this.progress_bar_inner, 0, 25, 800)
 
       // Move Background Circle Off Screen
-      Animated.timing(this.background_circle_center, {
-        toValue: {x: 20, y: 800},
-        duration: 800
-      }).start()
+      translate(this.background_circle_center, 20, 800, 800)
     }
   }
 
   // For either on forward or back button press
   goToThirdScreen = (direction) => {
     // Remove Location Symbol
-    Animated.timing(this.location_logo, {
-      toValue: { x: 70, y: -550 },
-      duration: 800
-    }).start()
+    translate(this.location_logo, 70, -550, 800)
 
     // Move progress bar
-    Animated.timing(this.progress_bar_inner, {
-      toValue: { x: 90, y: 25 },
-      duration: 800
-    }).start()
+    translate(this.progress_bar_inner, 90, 25, 800)
 
     // Remove Background Circles
-    Animated.timing(this.background_circle_top_left, {
-      toValue: { x: -540, y: -110 },
-      duration: 800
-    }).start()
-
-    Animated.timing(this.background_cicle_middle_right, {
-      toValue: { x: 450, y: 120 },
-      duration: 800
-    }).start()
+    translate(this.background_circle_top_left, -540, -110, 800)
+    translate(this.background_cicle_middle_right, 450, 120, 800)
 
     // Bring In Background Circle
-    Animated.timing(this.background_circle_center, {
-      toValue: { x: 20, y: 100 },
-      duration: 800
-    }).start()
+    translate(this.background_circle_center, 20, 100, 800)
 
     // Fade In Chat Logo
-    Animated.timing(this.chat_room_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
+    changeAppearance(this.chat_room_fade, 1, 800)
 
     // Fade Out Text and Bring Next 
-    Animated.timing(this.second_subheading_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
-
-    Animated.timing(this.third_subheading_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
+    changeAppearance(this.second_subheading_fade, 0, 800)
+    changeAppearance(this.third_subheading_fade, 1, 800)
 
     if (direction === 'back') {
       // Bring Chad Logo Back
-      Animated.timing(this.chad_logo, {
-        toValue: {x: -70, y: -80},
-        duration: 800
-      }).start()
+      translate(this.chad_logo, -70, -80, 800)
 
       // Remove Speaker Symbol
-      Animated.timing(this.speaker_logo, {
-        toValue: {x: 130, y: -150},
-        duration: 800
-      }).start()
+      translate(this.speaker_logo, 130, -150, 800)
 
       // Remove Audio Waves
-      Animated.timing(this.audio_waves, {
-        toValue: {x: -285, y: 115},
-        duration: 800
-      }).start()
+      translate(this.audio_waves, -285, 115)
     }
   }
 
   // Can Only Reach this Page on forward press
   goToFourthScreen = () => {
     // Move progress bar
-    Animated.timing(this.progress_bar_inner,{
-      toValue: { x: 180, y: 25 },
-      duration: 800
-    }).start()
+    translate(this.progress_bar_inner, 180, 25, 800)
 
     // Fade out Plus sign
-    Animated.timing(this.plus_fade, {
-      toValue: 0, 
-      duration: 800
-    }).start()
+    changeAppearance(this.plus_fade, 0, 800)
 
     // Move Chad Logo
-    Animated.timing(this.chad_logo, {
-      toValue: {x: -270, y: -80},
-      duration: 800
-    }).start() 
+    translate(this.chad_logo, -270, -80, 800)
 
     // Remove Background Circle
-    Animated.timing(this.background_circle_center, {
-      toValue: { x: 20, y: -400 },
-      duration: 800
-    }).start()
+    translate(this.background_circle_center, 20, -400, 800)
 
     // Fade Out Texting and Fade In Next Text
-    Animated.timing(this.third_subheading_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
+    changeAppearance(this.third_subheading_fade, 0, 800)
+    changeAppearance(this.fourth_subheading_fade, 1, 800)
     
-    Animated.timing(this.fourth_subheading_fade, {
-      toValue: 1,
-      duration: 800
-    }).start()
-
     // Fade Out Chat Logo
-    Animated.timing(this.chat_room_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
+    changeAppearance(this.chat_room_fade, 0, 800)
 
     // Move In Speaker Logo
-    Animated.timing(this.speaker_logo, {
-      toValue: {x: 130, y: 200},
-      duration: 800
-    }).start()
+    translate(this.speaker_logo, 130, 200, 800)
 
     // Move In Audio Waves
-    Animated.timing(this.audio_waves, {
-      toValue: {x: 45, y: 115},
-      duration: 800
-    }).start()
+    translate(this.audio_waves, 45, 115, 800)
   }
 
   // Can only return to this on back press
   goBackToFirstScreen = () => {
     // Moving Get Started Button Off Screen
-    Animated.timing(this.get_started_button, {
-      toValue: {x: 6, y: -20},
-      duration: 800
-    }).start() 
+    translate(this.get_started_button_button, 6, -20, 800)
 
     // Moving Chad Logo to New Position
-    Animated.timing(this.chad_logo, {
-      toValue: { x: 0, y: 150 },
-      duration: 800
-    }).start()
+    translate(this.chad_logo, 0, 150, 800)
 
     // Fading Location Logo In
-    Animated.timing(this.location_logo_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
+    changeAppearance(this.location_logo_fade, 0, 800)
 
     // Moving Chad Header and Resizing
-    Animated.timing(this.chad_heading, {
-      toValue: { x: 0, y: 120 },
-      duration: 800
-    }).start()
-    Animated.timing(this.heading_resize, {
-      toValue: 72,
-      duration: 800,
-    }).start()
+    translate(this.chad_heading, 0, 120, 800)
+    changeAppearance(this.heading_resize, 72, 800)
 
     //Fade Background Circle Away
-    Animated.timing(this.center_circle_fade, {
-      toValue: 1,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.center_circle_fade, 1, 1000)
 
     //Fade Out First Subheading
-    Animated.timing(this.first_subheading_fade, {
-      toValue: 1,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.first_subheading_fade, 1, 1000)
 
     //Fade In Second Subheading
-    Animated.timing(this.second_subheading_fade, {
-      toValue: 0,
-      duration: 1000,
-    }).start()
+    changeAppearance(this.second_subheading_fade, 0, 1000)
 
     // Bringing In Progress Bar
-    Animated.timing(this.progress_bar_wrapper, {
-      toValue: { x: -270, y: 620 },
-      duration: 600
-    }).start()
+    translate(this.progress_bar_wrapper, -270, 620, 800)
 
     // Bring In Forward Arrow Button
-    Animated.timing(this.next_screen_button, {
-      toValue: {x: 280, y: -30},
-      duraton: 800
-    }).start()
+    translate(this.next_screen_button, 280, -30, 800)
 
     // Fade In Header Buttons
-    Animated.timing(this.header_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
+    changeAppearance(this.header_fade, 0, 800)
 
     // Bring In Background Circles
-    Animated.timing(this.background_circle_top_left, {
-      toValue: {x: -240, y: -250},
-      duration: 800
-    }).start()
-
-    Animated.timing(this.background_cicle_middle_right, {
-      toValue: {x: 380, y: 120},
-      duration: 800
-    }).start()
+    translate(this.background_circle_top_left, -240, -250, 800)
+    translate(this.background_cicle_middle_right, 380, 120, 800)
 
     // Fade In + Symbol
-    Animated.timing(this.plus_fade, {
-      toValue: 0,
-      duration: 800
-    }).start()
+    changeAppearance(this.plus_fade, 0, 800)
   }
 
   render () {
-    let { fadeOutAnimation, fadeInAnimation } = this.state
-
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
@@ -420,6 +263,7 @@ export default class OnboardScreen extends React.Component {
               source={require('../../../assets/images/circleTopLeft.png')}
               />
               <View>
+                {/* Not clickable for some reason, can't figure out why */}
                 <Button style={ads_onboard.back_button} onPress={this.handleBackPress}>
                     <Image 
                     source={require('../../../assets/images/Back.png')}
@@ -427,6 +271,7 @@ export default class OnboardScreen extends React.Component {
                 </Button>
               </View>
               <View>
+                {/* Not clickable for some reason, can't figure out why */}
                 <Button style={ads_onboard.skip_button} onPress={() => {console.log('Skip')}}>
                   <Text style={ads_onboard.skip_button_text}>
                     Skip
@@ -502,13 +347,12 @@ export default class OnboardScreen extends React.Component {
             </View>
               
                 
-            {/* Buttons and progress bar animations*/}
-            
-
+            {/* Progress bar animations*/}
             <Animated.View style={[ads_onboard.progress_bar_wrapper, this.progress_bar_wrapper.getLayout()]}>
               <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
             </Animated.View>
 
+            {/* Get started Button */}
             <Animated.View style={[ads_onboard.btn_wrapper, this.get_started_button.getLayout()]}>
               <Button style={ads_onboard.btn} onPress={this.handleForwardPress}>
                 <Text style={ads_onboard.btn_text}>
@@ -517,7 +361,7 @@ export default class OnboardScreen extends React.Component {
               </Button>
             </Animated.View>
 
-
+            {/* Forward Button */}
             <Animated.View style={this.next_screen_button.getLayout()}>
               <Button style={ads_onboard.forward_button_surrounding} onPress={this.handleForwardPress}>
                 {this.state.click < 4 ? 

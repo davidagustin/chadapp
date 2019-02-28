@@ -9,17 +9,17 @@ import { SplashScreen, RegisterScreen, OnboardScreen } from '../components/scree
 
 const NoAuthStack = createStackNavigator(
   {
-    Splash: {
-      screen: SplashScreen,
-      path: '/',
-      navigationOptions: {
-        title: 'Getting Started'
-      }
-    },
-    Register: {
-      screen: RegisterScreen,
-      path: '/register'
-    },
+    // Splash: {
+    //   screen: SplashScreen,
+    //   path: '/',
+    //   navigationOptions: {
+    //     title: 'Getting Started'
+    //   }
+    // },
+    // Register: {
+    //   screen: RegisterScreen,
+    //   path: '/register'
+    // },
     Onboard: {
       screen: OnboardScreen,
       path: '/onboard',
