@@ -17,6 +17,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/vector-icons": "^9.0.0",
     "@material-ui/icons": "^3.0.2",
     "expo": "^32.0.0",
     "react": "16.5.0",
