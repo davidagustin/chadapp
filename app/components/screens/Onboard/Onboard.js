@@ -4,13 +4,14 @@
 // packages
 import React from 'react'
 import { 
-  Text, View, Animated, Image
+  Text, View, Animated
 } from 'react-native'
 
 
 // atoms
 // maybe change some animations into atoms?
-import { Button } from '../../atoms'
+import { Button, Icon } from '../../atoms'
+
 
 // templates
 import { Layout, Wrapper } from '../../templates'
@@ -35,20 +36,20 @@ export default class OnboardScreen extends React.Component {
 
     // Starting Positions for Items Receiving Translating Animations
     this.get_started_button = new Animated.ValueXY({ x: 6, y: 260 })
-    this.chad_logo = new Animated.ValueXY({ x: 0, y: 150 }) 
-    this.chad_heading = new Animated.ValueXY({ x: 0, y: 120 })
-    this.progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 620 })
+    this.chad_logo = new Animated.ValueXY({ x: 0, y: 110 }) 
+    this.chad_heading = new Animated.ValueXY({ x: 0, y: 40 })
+    this.progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 550 })
     this.progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
-    this.location_logo = new Animated.ValueXY({ x: 80, y: 80 })
+    this.location_logo = new Animated.ValueXY({ x: 70, y: 3 })
     this.next_screen_button = new Animated.ValueXY({x: 280, y: -30})
-    this.speaker_logo = new Animated.ValueXY({x: 130, y: -150})
-    this.audio_waves = new Animated.ValueXY({x: -285, y: 115})
+    this.speaker_logo = new Animated.ValueXY({x: 140, y: -150})
+    this.audio_waves = new Animated.ValueXY({x: -285, y: 65})
     this.background_circle_top_left = new Animated.ValueXY({x: -240, y: -250})
     this.background_cicle_middle_right = new Animated.ValueXY({x: 380, y: 120})
     this.background_circle_center = new Animated.ValueXY({x: 20, y: 800})
 
     // Starting Values for Items Receiving Fading/Resizing Animations
-    this.heading_resize = new Animated.Value(72)
+    this.heading_resize = new Animated.Value(ads_onboard.heading.fontSize)
     this.center_circle_fade = new Animated.Value(1)
     this.first_subheading_fade = new Animated.Value(1)
     this.second_subheading_fade = new Animated.Value(0)
@@ -97,16 +98,16 @@ export default class OnboardScreen extends React.Component {
   // Can Reach This Page On Both and Backward Press
   goToSecondScreen = (direction) => {
     // Moving Get Started Button Off Screen
-    translate(this.get_started_button, 12, 500, 800)
+    translate(this.get_started_button, 12, 580, 800)
 
     // Moving Chad Logo to New Position
-    translate(this.chad_logo, -80, 200, 800)
+    translate(this.chad_logo, -80, 150, 800)
 
     // Fading Location Logo In
     changeAppearance(this.location_logo_fade, 1, 800)
 
     // Moving Chad Header and Resizing
-    translate(this.chad_heading, 0, -184, 800)
+    translate(this.chad_heading, 0, -250, 800)
     changeAppearance(this.heading_resize, 20, 800)
 
     //Fade Background Circle Away
@@ -119,17 +120,17 @@ export default class OnboardScreen extends React.Component {
     changeAppearance(this.second_subheading_fade, 1, 1000)
 
     // Bringing In Progress Bar
-    translate(this.progress_bar_wrapper, 58, 620, 800)
+    translate(this.progress_bar_wrapper, 58, 550, 800)
 
     // Bring In Forward Arrow Button
-    translate(this.next_screen_button, 80, 20, 800)
+    translate(this.next_screen_button, 80, -20, 800)
 
     // Fade In Header Buttons
     changeAppearance(this.header_fade, 1, 1000)
 
     // Bring In Background Circles
-    translate(this.background_circle_top_left, -240, -110, 800)
-    translate(this.background_cicle_middle_right, 150, 120, 800)
+    translate(this.background_circle_top_left, -240, -140, 800)
+    translate(this.background_cicle_middle_right, 150, 90, 800)
 
     // Fade In + Symbol
     changeAppearance(this.plus_fade, 1, 800)
@@ -160,7 +161,7 @@ export default class OnboardScreen extends React.Component {
     translate(this.background_cicle_middle_right, 450, 120, 800)
 
     // Bring In Background Circle
-    translate(this.background_circle_center, 20, 100, 800)
+    translate(this.background_circle_center, 20, 80, 800)
 
     // Fade In Chat Logo
     changeAppearance(this.chat_room_fade, 1, 800)
@@ -171,7 +172,7 @@ export default class OnboardScreen extends React.Component {
 
     if (direction === 'back') {
       // Bring Chad Logo Back
-      translate(this.chad_logo, -70, -80, 800)
+      translate(this.chad_logo, -70, 180, 800)
 
       // Remove Speaker Symbol
       translate(this.speaker_logo, 130, -150, 800)
@@ -190,7 +191,7 @@ export default class OnboardScreen extends React.Component {
     changeAppearance(this.plus_fade, 0, 800)
 
     // Move Chad Logo
-    translate(this.chad_logo, -270, -80, 800)
+    translate(this.chad_logo, -270, 150, 800)
 
     // Remove Background Circle
     translate(this.background_circle_center, 20, -400, 800)
@@ -203,10 +204,10 @@ export default class OnboardScreen extends React.Component {
     changeAppearance(this.chat_room_fade, 0, 800)
 
     // Move In Speaker Logo
-    translate(this.speaker_logo, 130, 200, 800)
+    translate(this.speaker_logo, 140, 140, 800)
 
     // Move In Audio Waves
-    translate(this.audio_waves, 45, 115, 800)
+    translate(this.audio_waves, 40, 65, 800)
   }
 
   // Can only return to this on back press
@@ -215,7 +216,7 @@ export default class OnboardScreen extends React.Component {
     translate(this.get_started_button_button, 6, -20, 800)
 
     // Moving Chad Logo to New Position
-    translate(this.chad_logo, 0, 150, 800)
+    translate(this.chad_logo, 0, 110, 800)
 
     // Fading Location Logo In
     changeAppearance(this.location_logo_fade, 0, 800)
@@ -265,8 +266,10 @@ export default class OnboardScreen extends React.Component {
               <View>
                 {/* Not clickable for some reason, can't figure out why */}
                 <Button style={ads_onboard.back_button} onPress={this.handleBackPress}>
-                    <Image 
-                    source={require('../../../assets/images/Back.png')}
+                    <Icon
+                    name={'arrow-back'}
+                    size={30}
+                    color={'white'}
                     />
                 </Button>
               </View>
@@ -327,7 +330,7 @@ export default class OnboardScreen extends React.Component {
             </Animated.View>
             <View style={ads_onboard.text_container}>
               <Animated.View style={{opacity: this.second_subheading_fade}}>
-                <Text style={[ads_onboard.thicker_subheading, {left: -125}]}>Location Focused</Text>
+                <Text style={[ads_onboard.thicker_subheading, {left: -116}]}>Location Focused</Text>
                 <Text style={ads_onboard.following_subheading}>
                   Join chatrooms located all over the map
                 </Text>
@@ -365,12 +368,17 @@ export default class OnboardScreen extends React.Component {
             <Animated.View style={this.next_screen_button.getLayout()}>
               <Button style={ads_onboard.forward_button_surrounding} onPress={this.handleForwardPress}>
                 {this.state.click < 4 ? 
-                <Image 
-                style={ads_onboard.forward_button_content} 
-                source={require('../../../assets/images/forward.png')}/>
-                : <Image 
+                <Icon
                 style={ads_onboard.forward_button_content}
-                source={require('../../../assets/images/Check.png')}
+                name={'arrow-forward'}
+                size={40}
+                color={'white'}
+                />
+                : <Icon 
+                style={ads_onboard.forward_button_content}
+                name={'checkmark'}
+                size={70}
+                color={'white'}
                 />}
               </Button>
             </Animated.View>

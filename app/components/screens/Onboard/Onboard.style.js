@@ -3,11 +3,17 @@
 
 // packages
 import { StyleSheet } from 'react-native'
+import {
+  widthPercentageToDP as wp, heightPercentageToDP as hp
+} from 'react-native-responsive-screen'
+import RF from 'react-native-responsive-fontsize'
+
+// config
+import { 
+  BASE, FONT_LARGE
+} from '../../../config/style'
 
 // modules
-import { 
-  PURPLE, GREEN, BASE, FONT_XXXXL, FONT_LARGE, FONT_XL, FONT_XXL, FONT_XXXL
-} from '../../../config/style'
 import { size, percentage } from '../../../utilities'
 
 
@@ -15,83 +21,87 @@ const ads_onboard = StyleSheet.create({
   div: {
     display: 'flex',
     alignItems: 'center',
-    height: percentage(100),
-    width: percentage(100), 
+    height: wp('100%'),
+    width: wp('100%'), 
   },
   chadLogo: {
-    width: 120,
-    height: 120,
+    width: wp('28%'),
+    height: wp('40%'),
   },
   plus_symbol: {
     position: 'absolute',
-    top: 220
+    top: wp('52%')
   },
   location_logo: {
-    width: 120,
-    height: 120,
+    width: wp('30%'),
+    height: wp('38%'),
   },
   chatroom_logo: {
-    width: 100,
-    height: 100,
+    width: wp('30%'),
+    height: wp('28%'),
     position: 'absolute',
-    top: 200,
-    right: 60
+    top: wp('46%'),
+    right: wp('10%')
   },
   speaker_logo: {
-    width: 120,
-    height: 120,
+    width: wp('22%'),
+    height: wp('31%'),
     position: 'absolute'
   },
   audio_waves: {
-    width: 300,
-    height: 300,
+    width: wp('80%'),
+    height: wp('80%'),
     position:'absolute'
   },
   header: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'row',
   },
   back_button: {
     position: 'absolute',
-    top: 60,
-    right: 130
+    top: wp('11%'),
+    right: wp('40%')
   },
   skip_button: {
     position: 'absolute',
-    top: 57,
-    right: -155,
+    top: wp('11%'),
+    right: wp('-45%'),
   },
   skip_button_text: {
     color: BASE.light,
-    fontSize: size(18),
+    fontSize: RF(2.5),
     fontWeight: '300'
   },
   circle_logo_surrounding: {
     position: 'absolute',
-    top: 20,
+    top: wp('6%'),
+    width: wp('93%'),
+    height: wp('93%')
   },
   forward_button_surrounding: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: wp('20%'),
+    height: wp('20%'),
+    borderRadius: wp('10%'),
     backgroundColor: '#38d59d',
     justifyContent: 'center',
     alignItems: 'center', 
     position: 'absolute',
-    top: 260,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,  
-    elevation: 5
+    elevation: 5, 
+    bottom: wp('-80%'),
   },
   forward_button: {
-    width: 40,
-    height: 40
+    width: wp('50%'),
+    height: hp('100%')
   },
+  forward_button_content: {},
   heading: {
     color: BASE.light,
-    fontSize: size(72),
+    fontSize: RF(7),
     fontWeight: '300',
     textAlign: 'center'
   },
@@ -101,46 +111,45 @@ const ads_onboard = StyleSheet.create({
   },
   first_subheading: {
     color: BASE.light,
-    fontSize: FONT_LARGE,
+    fontSize: RF(3),
     fontWeight: '300',
     textAlign: 'center',
-    top: 150,
-    width: percentage(90),
+    top: wp('20%'),
+    width: wp('90%'),
   },
   following_subheading: {
     color: BASE.light,
-    fontSize: size(18),
+    fontSize: RF(2.5),
     fontWeight: '300',
     textAlign: 'center',
     position: 'absolute',
-    top: 135,
-    left: -170,
-    marginTop: size(40),
-    width: percentage(90),
+    top: hp('8%'),
+    left: wp('-45%'),
+    width: wp('90%'),
   },
   thicker_subheading: {
     color: BASE.light,
-    fontSize: size(32), 
+    fontSize: RF(4), 
     fontWeight: '300',
     textAlign: 'center',
     fontWeight: 'bold',
     position: 'absolute',
-    left: -110,
-    top: 270,
+    left: wp('-25.5%'),
+    top: hp('20%'),
     marginTop: size(-160)
   },
   btn: {
     backgroundColor: '#38d59d',
-    borderRadius: size(20),
-    height: size(50),
-    width: size(245),
-    
+    borderRadius: wp('6%'),
+    height: wp('13%'),
+    width: wp('63%'),
+    top: wp('-20%')
   }, 
   btn_text: {
     color: BASE.light,
-    fontSize: size(25),
+    fontSize: RF(3.5),
     textAlign: 'center',
-    marginTop: size(8)
+    marginTop: wp('2.5%')
   },
   btn_wrapper: {
     padding: size(20),
@@ -155,27 +164,27 @@ const ads_onboard = StyleSheet.create({
   },
   progress_bar_wrapper: {
     backgroundColor: '#38d59d',
-    borderRadius: size(20),
-    height: size(28),
-    width: size(270),
+    borderRadius: wp('5%'),
+    height: wp('7.75%'),
+    width: wp('70%'),
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,  
     elevation: 5,
-    position: 'absolute'
+    position: 'absolute',
   },
   progress_bar_inner: {
     backgroundColor: '#FFFFFF',
     borderRadius: size(20),
-    height: size(28),
-    width: size(90),
-    marginTop: size(-25),
-    marginRight: size(185)
+    height: wp('7.4%'),
+    width: wp('24.7%'),
+    marginTop: wp('-6.5%'),
+    marginRight: wp('33.3%')
   },
   background_circle: {
     position: 'absolute',
-    top: 0
+   
   },
 })
 
