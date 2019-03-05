@@ -5,20 +5,24 @@ import { createStackNavigator } from 'react-navigation'
 import { BASE } from './style'
 
 // screens
-import { SplashScreen, RegisterScreen } from '../components/screens'
+import { SplashScreen, RegisterScreen, OnboardScreen } from '../components/screens'
 
 const NoAuthStack = createStackNavigator(
   {
-    Splash: {
-      screen: SplashScreen,
-      path: '/',
-      navigationOptions: {
-        title: 'Getting Started'
-      }
-    },
-    Register: {
-      screen: RegisterScreen,
-      path: '/register'
+    // Splash: {
+    //   screen: SplashScreen,
+    //   path: '/',
+    //   navigationOptions: {
+    //     title: 'Getting Started'
+    //   }
+    // },
+    // Register: {
+    //   screen: RegisterScreen,
+    //   path: '/register'
+    // },
+    Onboard: {
+      screen: OnboardScreen,
+      path: '/onboard',
     }
   },
   {
