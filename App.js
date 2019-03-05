@@ -7,7 +7,7 @@ import { Platform, StatusBar, View } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 
 // navigation
-import AppNavigator from './app/Navigator'
+import AppNavigator from './app/components/Navigator'
 
 // styles
 import { BASE, helpers } from './app/config/style'
