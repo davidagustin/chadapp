@@ -1,5 +1,5 @@
 /**
- * @file Application settings
+ * @file Application constants and configuration
  * @author Lexus Drumgold <lex@lexusdrumgold.design>
  */
 
