@@ -20,8 +20,11 @@ import { Layout, Wrapper } from '../../templates'
 import screen from '../base/Screen.style'
 import ads_onboard from './Onboard.style'
 
-// assets (not sure if this was best location for file, feel free to move it)
-const { translate, changeAppearance } = require('../../../assets/animations')
+// config
+import {
+	ONBOARD_ANIMATION_POSITIONS, ONBOARD_ANIMATION_FADE_RESIZE, ICON_ANIMATIONS, circle_top_left_image_source
+} from '../../../config/onboard.config'
+
 export default class OnboardScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -252,6 +255,8 @@ export default class OnboardScreen extends React.Component {
   }
 
   render () {
+    // map
+
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
@@ -261,7 +266,7 @@ export default class OnboardScreen extends React.Component {
             <Animated.View style={[ads_onboard.header, {opacity: this.header_fade}]}>
               <Animated.Image
               style={[ads_onboard.background_circle, this.background_circle_top_left.getLayout()]}
-              source={require('../../../assets/images/circleTopLeft.png')}
+              source={circle_top_left_image_source}
               />
               <View>
                 {/* Not clickable for some reason, can't figure out why */}
@@ -284,6 +289,7 @@ export default class OnboardScreen extends React.Component {
             </Animated.View>
 
             {/* Icon and symbol animations */}
+
             <Animated.Image 
             style={[ads_onboard.background_circle, this.background_circle_center.getLayout()]}
             source={require('../../../assets/images/centerCircle.png')}
