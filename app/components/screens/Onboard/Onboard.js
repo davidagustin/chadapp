@@ -21,57 +21,57 @@ import screen from '../base/Screen.style'
 import ads_onboard from './Onboard.style'
 
 // config
-import {
-	ONBOARD_ANIMATION_POSITIONS, ONBOARD_ANIMATION_FADE_RESIZE, ICON_ANIMATIONS, circle_top_left_image_source
-} from '../../../config/onboard.config'
+import { ICON_ANIMATIONS } from '../../../config/onboard.config'
+import { circle_top_left_image_source } from '../../../config/onboard.config'
+
+// animtions
+import OnboardAnimation from './OnboardAnimations'
 
 export default class OnboardScreen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      click: 1,
-      fadeOutAnimation: new Animated.Value(1),
-      fadeInAnimation: new Animated.Value(0),
-    }
+  state = { click: 1 }
+  animation = new OnboardAnimation()
 
-    // all items that will have animations
-    // Brainstorming a way to store these animation values in an array or object 
+  // all items that will have animations
+  // Brainstorming a way to store these animation values in an array or object 
 
-    // Starting Positions for Items Receiving Translating Animations
-    this.get_started_button = new Animated.ValueXY({ x: 6, y: 260 })
-    this.chad_logo = new Animated.ValueXY({ x: 0, y: 110 }) 
-    this.chad_heading = new Animated.ValueXY({ x: 0, y: 40 })
-    this.progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 550 })
-    this.progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
-    this.location_logo = new Animated.ValueXY({ x: 70, y: 3 })
-    this.next_screen_button = new Animated.ValueXY({x: 280, y: -30})
-    this.speaker_logo = new Animated.ValueXY({x: 140, y: -150})
-    this.audio_waves = new Animated.ValueXY({x: -285, y: 65})
-    this.background_circle_top_left = new Animated.ValueXY({x: -240, y: -250})
-    this.background_cicle_middle_right = new Animated.ValueXY({x: 380, y: 120})
-    this.background_circle_center = new Animated.ValueXY({x: 20, y: 800})
+  // Starting Positions for Items Receiving Translating Animations
+  get_started_button = new Animated.ValueXY({ x: 6, y: 260 })
+  chad_logo = new Animated.ValueXY({ x: 0, y: 110 }) 
+  chad_heading = new Animated.ValueXY({ x: 0, y: 40 })
+  progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 550 })
+  progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
+  location_logo = new Animated.ValueXY({ x: 70, y: 3 })
+  next_screen_button = new Animated.ValueXY({x: 280, y: -30})
+  speaker_logo = new Animated.ValueXY({x: 140, y: -150})
+  audio_waves = new Animated.ValueXY({x: -285, y: 65})
+  background_circle_top_left = new Animated.ValueXY({x: -240, y: -250})
+  background_cicle_middle_right = new Animated.ValueXY({x: 380, y: 120})
+  background_circle_center = new Animated.ValueXY({x: 20, y: 800})
 
-    // Starting Values for Items Receiving Fading/Resizing Animations
-    this.heading_resize = new Animated.Value(ads_onboard.heading.fontSize)
-    this.center_circle_fade = new Animated.Value(1)
-    this.first_subheading_fade = new Animated.Value(1)
-    this.second_subheading_fade = new Animated.Value(0)
-    this.third_subheading_fade = new Animated.Value(0)
-    this.fourth_subheading_fade = new Animated.Value(0)
-    this.header_fade = new Animated.Value(0)
-    this.plus_fade = new Animated.Value(0)
-    this.location_logo_fade = new Animated.Value(0)
-    this.chat_room_fade = new Animated.Value(0)
-  }
+  // Starting Values for Items Receiving Fading/Resizing Animations
+  heading_resize = new Animated.Value(ads_onboard.heading.fontSize)
+  center_circle_fade = new Animated.Value(1)
+  first_subheading_fade = new Animated.Value(1)
+  second_subheading_fade = new Animated.Value(0)
+  third_subheading_fade = new Animated.Value(0)
+  fourth_subheading_fade = new Animated.Value(0)
+  header_fade = new Animated.Value(0)
+  plus_fade = new Animated.Value(0)
+  location_logo_fade = new Animated.Value(0)
+  chat_room_fade = new Animated.Value(0)
+  
 
   handleForwardPress = () => {
+    const { click } = this.state
+    const animation  = this.animation
+
     // do animation based on click number
-    if (this.state.click < 4) {
-      if (this.state.click === 1) {
-        this.goToSecondScreen('forward')
-      } else if (this.state.click === 2) {
+    if (click < 4) {
+      if (click === 1) {
+        animation.goToSecondScreen('forward')
+      } else if (click === 2) {
         this.goToThirdScreen('forward')
-      } else if (this.state.click === 3) {
+      } else if (click === 3) {
         this.goToFourthScreen()
       } else {
         console.log('Navigate to home page')
@@ -83,11 +83,13 @@ export default class OnboardScreen extends React.Component {
   }
 
   handleBackPress = () => {
+    const { click } = this.state
+    const { animation } = this.animation
     console.log('Back Button Pressed')
-    if (this.state.click > 1 ) {
-      if (this.state.click === 2) {
+    if (click > 1 ) {
+      if (click === 2) {
         this.goBackToFirstScreen()
-      } else if (this.state.click === 3) {
+      } else if (click === 3) {
         this.goToSecondScreen('back')
       } else {
         this.goToThirdScreen('back')
@@ -255,8 +257,10 @@ export default class OnboardScreen extends React.Component {
   }
 
   render () {
-    // map
+    const icons = ICON_ANIMATIONS
 
+    // const animation = this.animation.animations
+    
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
@@ -289,8 +293,11 @@ export default class OnboardScreen extends React.Component {
             </Animated.View>
 
             {/* Icon and symbol animations */}
-
-            <Animated.Image 
+            {icons.map((element) => {
+              {element.type === 'text' && <Animated.Text style={element.style}>{element.text}</Animated.Text>}
+              {element.type === 'image' && <Animated.Image style={element.style} source={element.source} />}}
+            )}
+            {/* <Animated.Image 
             style={[ads_onboard.background_circle, this.background_circle_center.getLayout()]}
             source={require('../../../assets/images/centerCircle.png')}
             />
@@ -326,7 +333,7 @@ export default class OnboardScreen extends React.Component {
             <Animated.Image 
             style= {[ads_onboard.audio_waves, this.audio_waves.getLayout()]}
             source={require('../../../assets/images/AudioWaves.png')}
-            />
+            /> */}
 
             {/* Text animations */}
             <Animated.View style={{opacity: this.first_subheading_fade}}>

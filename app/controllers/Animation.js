@@ -10,10 +10,10 @@
 // packages
 import { Animated } from 'react-native'
 
-/* remember to leave JSDoc style comments for the class and methods */
-
+// Class for elements that will have animation effects
 export default class Animation {
   
+  // Animations where CSS property is altered ex: fading, resizing
 	changeAppearance(element, value, duration) {
 	  Animated.timing(element, {
 	    toValue: value,
@@ -21,6 +21,7 @@ export default class Animation {
 	  }).start()
 	}
 
+  // Animations where element moves to a new place on screen
 	translate(element, x, y, duration) {
 	  Animated.timing(element, {
 	    toValue: { x: x, y: y },

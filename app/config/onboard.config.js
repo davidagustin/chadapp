@@ -3,8 +3,23 @@
  * @author Jacob Metzinger <jacob.adam.metzinger@gmail.com>
  */
 
+// Packages
 import { Animated } from 'react-native'
-import { ads_onboard } from '../components/screens/Onboard/Onboard.style'
+
+// Styling
+import ads_onboard from '../components/screens/Onboard/Onboard.style'
+
+// Images
+import * as center_circle from '../assets/images/centerCircle.png'
+import * as center_circle_middle_right from '../assets/images/circleMiddleRight.png'
+import * as circle_logo_surrounding from '../assets/images/Oval.png' 
+import * as chad_logo from '../assets/images/logoOnboard.png'
+import * as location_logo from '../assets/images/LocationSymbol.png'
+import * as plus_sign from '../assets/images/plus.png'
+import * as chatroom_logo from '../assets/images/Chatrooms.png'
+import * as speaker_logo from '../assets/images/Speaker.png'
+import * as audio_waves from '../assets/images/AudioWaves.png'
+import * as background_circle_top_left from '../assets/images/circleTopLeft.png'
 
 const ONBOARD_ANIMATION_POSITIONS = {
   chad_logo: new Animated.ValueXY({ x: 0, y: 110 }),
@@ -37,61 +52,60 @@ const ONBOARD_ANIMATION_FADE_RESIZE = {
 const ICON_ANIMATIONS = [
   {
     style: [ads_onboard.background_cirlce, ONBOARD_ANIMATION_POSITIONS.background_circle_center.getLayout()],
-    source: require('../assets/images/centerCircle.png'),
+    source: center_circle,
     type: 'Image'
   },
   {
     style: [ads_onboard.background_cirlce, ONBOARD_ANIMATION_POSITIONS.background_cicle_middle_right.getLayout()],
-    source: require('../assets/images/circleMiddleRight.png'),
+    source: center_circle_middle_right,
     type: 'Image'
   },
   {
     style: [ads_onboard.circle_logo_surrounding, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.center_circle_fade}],
-    source: require('../assets/images/Oval.png'),
+    source: circle_logo_surrounding,
     type: 'Image'
   },
 	{
 		style: [ads_onboard.chad_logo, ONBOARD_ANIMATION_POSITIONS.chad_logo.getLayout()],
-		source: require('../assets/images/logoOnboard.png'),
+		source: chad_logo,
 		type: 'Image'
   },
   {
     style: [ads_onboard.location_logo, ONBOARD_ANIMATION_POSITIONS.location_logo.getLayout(), {opacity: ONBOARD_ANIMATION_FADE_RESIZE.location_logo_fade}],
-    soure: require('../assets/images/LocationSymbol.png'),
+    soure: location_logo,
     type: 'Image'
   },
   {
-    style: [ads_onboard.heading, ONBOARD_ANIMATION_POSITIONS.chad_heading.getLayout(), { fontSize: ONBOARD_ANIMATION_CONFIG.heading_resize }],
+    style: [ads_onboard.heading, ONBOARD_ANIMATION_POSITIONS.chad_heading.getLayout(), { fontSize: ONBOARD_ANIMATION_FADE_RESIZE.heading_resize }],
     text: 'Chad',
     type: 'Text'
   }, 
   {
     style: [ads_onboard.plus_symbol, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.plus_fade}],
-    source: require('../assets/images/plus.png'),
+    source: plus_sign,
     type: 'Image'
   },
   {
-    style: [ads_onboard.chatroom_logo, {opacity: ONBOARD_ANIMATION_CONFIG.chat_room_fade}],
-    source: '../assets/images/Chatrooms.png',
+    style: [ads_onboard.chatroom_logo, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.chat_room_fade}],
+    source: chatroom_logo,
     type: 'Image'
   },
   {
     style: [ads_onboard.speaker_logo, ONBOARD_ANIMATION_POSITIONS.speaker_logo.getLayout()],
-    source: require('../assets/images/Speaker.png'),
+    source: speaker_logo,
     type: 'Image'
   },
   {
     style: [ads_onboard.audio_waves, ONBOARD_ANIMATION_POSITIONS.audio_waves.getLayout()],
-    source: require('../assets/images/AudioWaves.png'),
+    source: audio_waves,
     type: 'Image'
   }
 ]
 
 const circle_top_left_image_source = {
-  circle_top_left: {
-    source: require('../assets/images/circleTopLeft.png'),
-  }
+  source: require('../assets/images/circleTopLeft.png'),
 }
 
 
-export default { ONBOARD_ANIMATION_POSITIONS, ONBOARD_ANIMATION_FADE_RESIZE, ICON_ANIMATIONS, circle_top_left_image_source }
+
+export { ONBOARD_ANIMATION_POSITIONS, ONBOARD_ANIMATION_FADE_RESIZE, ICON_ANIMATIONS, circle_top_left_image_source }
