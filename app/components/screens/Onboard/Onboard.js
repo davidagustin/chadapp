@@ -31,36 +31,6 @@ export default class OnboardScreen extends React.Component {
   state = { click: 1 }
   animation = new OnboardAnimation()
 
-  // all items that will have animations
-  // Brainstorming a way to store these animation values in an array or object 
-
-  // Starting Positions for Items Receiving Translating Animations
-  get_started_button = new Animated.ValueXY({ x: 6, y: 260 })
-  chad_logo = new Animated.ValueXY({ x: 0, y: 110 }) 
-  chad_heading = new Animated.ValueXY({ x: 0, y: 40 })
-  progress_bar_wrapper = new Animated.ValueXY({ x: -270, y: 550 })
-  progress_bar_inner = new Animated.ValueXY({ x: 0, y: 25 })
-  location_logo = new Animated.ValueXY({ x: 70, y: 3 })
-  next_screen_button = new Animated.ValueXY({x: 280, y: -30})
-  speaker_logo = new Animated.ValueXY({x: 140, y: -150})
-  audio_waves = new Animated.ValueXY({x: -285, y: 65})
-  background_circle_top_left = new Animated.ValueXY({x: -240, y: -250})
-  background_cicle_middle_right = new Animated.ValueXY({x: 380, y: 120})
-  background_circle_center = new Animated.ValueXY({x: 20, y: 800})
-
-  // Starting Values for Items Receiving Fading/Resizing Animations
-  heading_resize = new Animated.Value(ads_onboard.heading.fontSize)
-  center_circle_fade = new Animated.Value(1)
-  first_subheading_fade = new Animated.Value(1)
-  second_subheading_fade = new Animated.Value(0)
-  third_subheading_fade = new Animated.Value(0)
-  fourth_subheading_fade = new Animated.Value(0)
-  header_fade = new Animated.Value(0)
-  plus_fade = new Animated.Value(0)
-  location_logo_fade = new Animated.Value(0)
-  chat_room_fade = new Animated.Value(0)
-  
-
   handleForwardPress = () => {
     const { click } = this.state
     const animation  = this.animation
@@ -70,9 +40,9 @@ export default class OnboardScreen extends React.Component {
       if (click === 1) {
         animation.goToSecondScreen('forward')
       } else if (click === 2) {
-        this.goToThirdScreen('forward')
+        animation.goToThirdScreen('forward')
       } else if (click === 3) {
-        this.goToFourthScreen()
+        animation.goToFourthScreen()
       } else {
         console.log('Navigate to home page')
       }
@@ -88,11 +58,11 @@ export default class OnboardScreen extends React.Component {
     console.log('Back Button Pressed')
     if (click > 1 ) {
       if (click === 2) {
-        this.goBackToFirstScreen()
+        animation.goBackToFirstScreen()
       } else if (click === 3) {
-        this.goToSecondScreen('back')
+        animation.goToSecondScreen('back')
       } else {
-        this.goToThirdScreen('back')
+        animation.goToThirdScreen('back')
       }
       this.setState({
         click: this.state.click -= 1
@@ -100,176 +70,19 @@ export default class OnboardScreen extends React.Component {
     }
   }
 
-  // Can Reach This Page On Both and Backward Press
-  goToSecondScreen = (direction) => {
-    // Moving Get Started Button Off Screen
-    translate(this.get_started_button, 12, 580, 800)
-
-    // Moving Chad Logo to New Position
-    translate(this.chad_logo, -80, 150, 800)
-
-    // Fading Location Logo In
-    changeAppearance(this.location_logo_fade, 1, 800)
-
-    // Moving Chad Header and Resizing
-    translate(this.chad_heading, 0, -250, 800)
-    changeAppearance(this.heading_resize, 20, 800)
-
-    //Fade Background Circle Away
-    changeAppearance(this.center_circle_fade, 0, 1000)
-
-    //Fade Out First Subheading
-    changeAppearance(this.first_subheading_fade, 0, 1000)
-
-    //Fade In Second Subheading
-    changeAppearance(this.second_subheading_fade, 1, 1000)
-
-    // Bringing In Progress Bar
-    translate(this.progress_bar_wrapper, 58, 550, 800)
-
-    // Bring In Forward Arrow Button
-    translate(this.next_screen_button, 80, -20, 800)
-
-    // Fade In Header Buttons
-    changeAppearance(this.header_fade, 1, 1000)
-
-    // Bring In Background Circles
-    translate(this.background_circle_top_left, -240, -140, 800)
-    translate(this.background_cicle_middle_right, 150, 90, 800)
-
-    // Fade In + Symbol
-    changeAppearance(this.plus_fade, 1, 800)
-
-    // Animations Needed To Move Back To Screen
-    if (direction === 'back') {
-      // Move Location Logo Back On Screen
-      translate(this.location_logo, 80, 80, 800)
-
-      // Move progress bar back
-      translate(this.progress_bar_inner, 0, 25, 800)
-
-      // Move Background Circle Off Screen
-      translate(this.background_circle_center, 20, 800, 800)
-    }
-  }
-
-  // For either on forward or back button press
-  goToThirdScreen = (direction) => {
-    // Remove Location Symbol
-    translate(this.location_logo, 70, -550, 800)
-
-    // Move progress bar
-    translate(this.progress_bar_inner, 90, 25, 800)
-
-    // Remove Background Circles
-    translate(this.background_circle_top_left, -540, -110, 800)
-    translate(this.background_cicle_middle_right, 450, 120, 800)
-
-    // Bring In Background Circle
-    translate(this.background_circle_center, 20, 80, 800)
-
-    // Fade In Chat Logo
-    changeAppearance(this.chat_room_fade, 1, 800)
-
-    // Fade Out Text and Bring Next 
-    changeAppearance(this.second_subheading_fade, 0, 800)
-    changeAppearance(this.third_subheading_fade, 1, 800)
-
-    if (direction === 'back') {
-      // Bring Chad Logo Back
-      translate(this.chad_logo, -70, 180, 800)
-
-      // Remove Speaker Symbol
-      translate(this.speaker_logo, 130, -150, 800)
-
-      // Remove Audio Waves
-      translate(this.audio_waves, -285, 115)
-    }
-  }
-
-  // Can Only Reach this Page on forward press
-  goToFourthScreen = () => {
-    // Move progress bar
-    translate(this.progress_bar_inner, 180, 25, 800)
-
-    // Fade out Plus sign
-    changeAppearance(this.plus_fade, 0, 800)
-
-    // Move Chad Logo
-    translate(this.chad_logo, -270, 150, 800)
-
-    // Remove Background Circle
-    translate(this.background_circle_center, 20, -400, 800)
-
-    // Fade Out Texting and Fade In Next Text
-    changeAppearance(this.third_subheading_fade, 0, 800)
-    changeAppearance(this.fourth_subheading_fade, 1, 800)
-    
-    // Fade Out Chat Logo
-    changeAppearance(this.chat_room_fade, 0, 800)
-
-    // Move In Speaker Logo
-    translate(this.speaker_logo, 140, 140, 800)
-
-    // Move In Audio Waves
-    translate(this.audio_waves, 40, 65, 800)
-  }
-
-  // Can only return to this on back press
-  goBackToFirstScreen = () => {
-    // Moving Get Started Button Off Screen
-    translate(this.get_started_button_button, 6, -20, 800)
-
-    // Moving Chad Logo to New Position
-    translate(this.chad_logo, 0, 110, 800)
-
-    // Fading Location Logo In
-    changeAppearance(this.location_logo_fade, 0, 800)
-
-    // Moving Chad Header and Resizing
-    translate(this.chad_heading, 0, 120, 800)
-    changeAppearance(this.heading_resize, 72, 800)
-
-    //Fade Background Circle Away
-    changeAppearance(this.center_circle_fade, 1, 1000)
-
-    //Fade Out First Subheading
-    changeAppearance(this.first_subheading_fade, 1, 1000)
-
-    //Fade In Second Subheading
-    changeAppearance(this.second_subheading_fade, 0, 1000)
-
-    // Bringing In Progress Bar
-    translate(this.progress_bar_wrapper, -270, 620, 800)
-
-    // Bring In Forward Arrow Button
-    translate(this.next_screen_button, 280, -30, 800)
-
-    // Fade In Header Buttons
-    changeAppearance(this.header_fade, 0, 800)
-
-    // Bring In Background Circles
-    translate(this.background_circle_top_left, -240, -250, 800)
-    translate(this.background_cicle_middle_right, 380, 120, 800)
-
-    // Fade In + Symbol
-    changeAppearance(this.plus_fade, 0, 800)
-  }
-
   render () {
     const icons = ICON_ANIMATIONS
+    const animation = this.animation.animations
 
-    // const animation = this.animation.animations
-    
     return (
       <Layout gradient>
         <Wrapper style={[screen.wrapper]}>
           <View style={screen.div}>
 
             {/* Header to house back and skip buttons */}
-            <Animated.View style={[ads_onboard.header, {opacity: this.header_fade}]}>
+            <Animated.View style={[ads_onboard.header, {opacity: animation.header_fade}]}>
               <Animated.Image
-              style={[ads_onboard.background_circle, this.background_circle_top_left.getLayout()]}
+              style={[ads_onboard.background_circle, animation.background_circle_top_left.getLayout()]}
               source={circle_top_left_image_source}
               />
               <View>
@@ -293,10 +106,11 @@ export default class OnboardScreen extends React.Component {
             </Animated.View>
 
             {/* Icon and symbol animations */}
-            {icons.map((element) => {
-              {element.type === 'text' && <Animated.Text style={element.style}>{element.text}</Animated.Text>}
-              {element.type === 'image' && <Animated.Image style={element.style} source={element.source} />}}
-            )}
+            {icons.map((icon) => {
+              console.log('icon: ', icon)
+              {icon.type === 'Text' && <Animated.Text style={icon.style}>{icon.text}</Animated.Text>}
+              {icon.type === 'Image' && <Animated.Image style={icon.style} source={icon.source} />}
+            })}
             {/* <Animated.Image 
             style={[ads_onboard.background_circle, this.background_circle_center.getLayout()]}
             source={require('../../../assets/images/centerCircle.png')}
@@ -336,25 +150,25 @@ export default class OnboardScreen extends React.Component {
             /> */}
 
             {/* Text animations */}
-            <Animated.View style={{opacity: this.first_subheading_fade}}>
+            <Animated.View style={{opacity: animation.first_subheading_fade}}>
               <Text style={ads_onboard.first_subheading}>
                 Connect with others through{"\n"} location based chatrooms.
               </Text>
             </Animated.View>
             <View style={ads_onboard.text_container}>
-              <Animated.View style={{opacity: this.second_subheading_fade}}>
+              <Animated.View style={{opacity: animation.second_subheading_fade}}>
                 <Text style={[ads_onboard.thicker_subheading, {left: -116}]}>Location Focused</Text>
                 <Text style={ads_onboard.following_subheading}>
                   Join chatrooms located all over the map
                 </Text>
               </Animated.View>    
-              <Animated.View style={{opacity: this.third_subheading_fade}}>
+              <Animated.View style={{opacity: animation.third_subheading_fade}}>
                 <Text style={ads_onboard.thicker_subheading}>Chatroom Tags</Text>
                 <Text style={ads_onboard.following_subheading}>
                   Join chatrooms related to a specific topic{"\n"} of interest
                 </Text>
               </Animated.View>  
-              <Animated.View style={{opacity: this.fourth_subheading_fade}}>
+              <Animated.View style={{opacity: animation.fourth_subheading_fade}}>
                 <Text style={ads_onboard.thicker_subheading}>Say Something</Text>
                 <Text style={ads_onboard.following_subheading}>
                   Ex: Chad take me to chatrooms located{"\n"} in San Francisco, CA.
@@ -364,12 +178,12 @@ export default class OnboardScreen extends React.Component {
               
                 
             {/* Progress bar animations*/}
-            <Animated.View style={[ads_onboard.progress_bar_wrapper, this.progress_bar_wrapper.getLayout()]}>
-              <Animated.View style={[ads_onboard.progress_bar_inner, this.progress_bar_inner.getLayout()]}></Animated.View>
+            <Animated.View style={[ads_onboard.progress_bar_wrapper, animation.progress_bar_wrapper.getLayout()]}>
+              <Animated.View style={[ads_onboard.progress_bar_inner, animation.progress_bar_inner.getLayout()]}></Animated.View>
             </Animated.View>
 
             {/* Get started Button */}
-            <Animated.View style={[ads_onboard.btn_wrapper, this.get_started_button.getLayout()]}>
+            <Animated.View style={[ads_onboard.btn_wrapper, animation.get_started_button.getLayout()]}>
               <Button style={ads_onboard.btn} onPress={this.handleForwardPress}>
                 <Text style={ads_onboard.btn_text}>
                   Get Started
@@ -378,7 +192,7 @@ export default class OnboardScreen extends React.Component {
             </Animated.View>
 
             {/* Forward Button */}
-            <Animated.View style={this.next_screen_button.getLayout()}>
+            <Animated.View style={animation.next_screen_button.getLayout()}>
               <Button style={ads_onboard.forward_button_surrounding} onPress={this.handleForwardPress}>
                 {this.state.click < 4 ? 
                 <Icon

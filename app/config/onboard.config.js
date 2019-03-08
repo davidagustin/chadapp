@@ -52,27 +52,27 @@ const ONBOARD_ANIMATION_FADE_RESIZE = {
 const ICON_ANIMATIONS = [
   {
     style: [ads_onboard.background_cirlce, ONBOARD_ANIMATION_POSITIONS.background_circle_center.getLayout()],
-    source: center_circle,
+    source: center_circle.default,
     type: 'Image'
   },
   {
     style: [ads_onboard.background_cirlce, ONBOARD_ANIMATION_POSITIONS.background_cicle_middle_right.getLayout()],
-    source: center_circle_middle_right,
+    source: center_circle_middle_right.default,
     type: 'Image'
   },
   {
     style: [ads_onboard.circle_logo_surrounding, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.center_circle_fade}],
-    source: circle_logo_surrounding,
+    source: circle_logo_surrounding.default,
     type: 'Image'
   },
 	{
 		style: [ads_onboard.chad_logo, ONBOARD_ANIMATION_POSITIONS.chad_logo.getLayout()],
-		source: chad_logo,
+		source: chad_logo.default,
 		type: 'Image'
   },
   {
     style: [ads_onboard.location_logo, ONBOARD_ANIMATION_POSITIONS.location_logo.getLayout(), {opacity: ONBOARD_ANIMATION_FADE_RESIZE.location_logo_fade}],
-    soure: location_logo,
+    soure: location_logo.default,
     type: 'Image'
   },
   {
@@ -82,28 +82,28 @@ const ICON_ANIMATIONS = [
   }, 
   {
     style: [ads_onboard.plus_symbol, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.plus_fade}],
-    source: plus_sign,
+    source: plus_sign.default,
     type: 'Image'
   },
   {
     style: [ads_onboard.chatroom_logo, {opacity: ONBOARD_ANIMATION_FADE_RESIZE.chat_room_fade}],
-    source: chatroom_logo,
+    source: chatroom_logo.default,
     type: 'Image'
   },
   {
     style: [ads_onboard.speaker_logo, ONBOARD_ANIMATION_POSITIONS.speaker_logo.getLayout()],
-    source: speaker_logo,
+    source: speaker_logo.default,
     type: 'Image'
   },
   {
     style: [ads_onboard.audio_waves, ONBOARD_ANIMATION_POSITIONS.audio_waves.getLayout()],
-    source: audio_waves,
+    source: audio_waves.default,
     type: 'Image'
   }
 ]
 
 const circle_top_left_image_source = {
-  source: require('../assets/images/circleTopLeft.png'),
+  source: background_circle_top_left.default,
 }
 
 

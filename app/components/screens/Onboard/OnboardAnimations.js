@@ -72,7 +72,7 @@ export default class OnboardAnimation extends Animation {
 
   // For either on forward or back button press
   goToThirdScreen = (direction) => {
-
+		const { animations } = this
     // Remove Location Symbol
     super.translate(animations.location_logo, 70, -550, 800)
 
@@ -107,6 +107,7 @@ export default class OnboardAnimation extends Animation {
 
   // Can Only Reach animations Page on forward press
   goToFourthScreen = () => {
+		const { animations } = this
 
     // Move progress bar
     super.translate(animations.progress_bar_inner, 180, 25, 800)
@@ -136,6 +137,7 @@ export default class OnboardAnimation extends Animation {
 
   // Can only return to animations on back press
   goBackToFirstScreen = () => {
+		const { animations } = this
 
     // Moving Get Started Button Off Screen
     super.translate(animations.get_started_button_button, 6, -20, 800)
